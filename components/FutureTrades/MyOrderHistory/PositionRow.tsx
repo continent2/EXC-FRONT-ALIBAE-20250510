@@ -193,7 +193,7 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
         "Order closed successfully!"
       )
     );
-    setIsClosingOrder(close);
+    setIsClosingOrder(false);
   };
 
   return (
@@ -291,7 +291,7 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
         <div
           className="tradex-px-[24px] tradex-rounded-[6px] tradex-cursor-pointer tradex-text-black dark:tradex-text-white dark:tradex-bg-gray-700 tradex-bg-gray-300 tradex-flex tradex-items-center tradex-justify-center"
           style={{
-            textWrap: "nowrap",
+            wordWrap: "break-word",
             minWidth: "9rem", // Match your button height
             minHeight: "1.5rem",
           }}

@@ -46,16 +46,16 @@ const OrderHistorySection = ({ bottom }: any) => {
                 });
               }}
             >
-              <a
-                id="Open-orders-tab"
-                data-toggle="tab"
-                role="tab"
-                aria-controls="Open-orders"
-                aria-selected="true"
-                className={"nav-link " + (activeTab.openOrders && "active")}
-              >
-                {t("Open orders")}
-              </a>
+              {/* <a */}
+              {/*   id="Open-orders-tab" */}
+              {/*   data-toggle="tab" */}
+              {/*   role="tab" */}
+              {/*   aria-controls="Open-orders" */}
+              {/*   aria-selected="true" */}
+              {/*   className={"nav-link " + (activeTab.openOrders && "active")} */}
+              {/* > */}
+              {/*   {t("Open orders")} */}
+              {/* </a> */}
             </li>
             <li
               role="presentation"

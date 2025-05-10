@@ -46,10 +46,7 @@ const DistributionSection = ({ landing }: any) => {
   ];
   console.log("landing", landing);
   const saveFile = () => {
-    saveAs(
-      "https://alibae.io/ALIBAE.apk",
-      "ALIBAE.apk"
-    );
+    saveAs("https://alibae.io/BTBEX.apk", "BTBEX.apk");
   };
   return (
     <>
@@ -62,8 +59,9 @@ const DistributionSection = ({ landing }: any) => {
                   <div className=" tradex-space-y-4 md:tradex-space-y-10">
                     <div className=" tradex-space-y-2 md:tradex-space-y-4">
                       <h3 className="tradex-max-w-[547px] tradex-text-[24px] tradex-leading-[32px]  md:tradex-text-[32px] md:tradex-leading-[48px] xl:tradex-text-[48px] xl:tradex-leading-[60px] !tradex-text-title tradex-font-bold">
-                        {landing?.trade_anywhere_title ||
-                          "Tradexpro: Trade With Anytime Anywhere"}
+                        {/* {landing?.trade_anywhere_title || */}
+                        Btbex: Trade With Anytime Anywhere
+                        {/* } */}
                       </h3>
                       {/* <p className=" tradex-text-sm md:tradex-text-base md:tradex-leading-6 !tradex-text-body">
                        { landing?.trade_anywhere_title || t(`Discover the future of trading with the tradexpro mobile

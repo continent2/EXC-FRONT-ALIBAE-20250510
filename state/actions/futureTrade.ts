@@ -471,7 +471,7 @@ export const CloseSellOrderAction =
     leverage_amount: number,
     setPrePlaceData: any,
     coin_pair_id: any,
-    stop_price: any
+    stop_price: any,
   ) =>
   async (dispatch: any) => {
     const formData = new FormData();
@@ -495,7 +495,7 @@ export const CloseSellOrderAction =
     }
   };
 export const closeLongShortAllOrderAction =
-  (CloseAll: any, coin_pair_id: number) => async (dispatch: any) => {
+  (CloseAll: any, coin_pair_id: number, message: string) => async (dispatch: any) => {
     const arrayPrepare: any = [];
     CloseAll?.map((item: any) => {
       if (item.order_type === MARKET_ORDER) {
@@ -510,7 +510,7 @@ export const closeLongShortAllOrderAction =
     };
     const response = await closeLongShortAllOrder(preparedData);
     if (response.success) {
-      toast.success(response.message);
+      toast.success(message || response.message);
     } else {
       toast.error(response.message);
     }
@@ -527,7 +527,7 @@ export const CloseBuyOrderAction =
     leverage_amount: number,
     setPrePlaceData: any,
     coin_pair_id: any,
-    stop_price: any
+    stop_price: any,
   ) =>
   async (dispatch: any) => {
     const formData = new FormData();

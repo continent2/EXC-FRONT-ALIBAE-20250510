@@ -36,7 +36,7 @@ const Position = ({ listData }: any) => {
           role="tabpanel"
           aria-labelledby="Open-orders-tab"
         >
-          <div className="table-responsive order-history-table-min-h">
+          <div className="table-responsive overflow-x-auto order-history-table-min-h">
             <table className="table">
               <thead>
                 <tr>

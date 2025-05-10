@@ -2152,71 +2152,71 @@
   "Are you sure?": "你确定吗？",
   "You will not be able to revert this!": "您将无法恢复此状态！",
   "Note: if you ignore this manual approval process, you can use a command, that will automatically handle this. The command is \"adjust-token-deposit\" , you can run it always in background ": "注意：如果您忽略此手动审批过程，您可以使用命令，该命令将自动处理此问题。 ",
-  "Deposit History": "存款历史", 
-"Withdrawal History": "提款历史", 
-"Transaction History": "交易历史", 
-"Recent Transactions": "近期交易", 
-"View More": "查看更多",
+  "Deposit History": "存款历史",
+  "Withdrawal History": "提款历史",
+  "Transaction History": "交易历史",
+  "Recent Transactions": "近期交易",
+  "View More": "查看更多",
 
-"IF_YOUR_DEPOSIT_HAS_NOT_APPEARED_00": "如果您的存款尚未出现在您的余额中，请使用以下表格检查是否已收到存款.",
-"IF_YOUR_DEPOSIT_HAS_NOT_APPEARED_01":"首先，选择网络，然后选择硬币，然后输入您存款的交易ID.",
-"IF_YOUR_DEPOSIT_HAS_NOT_APPEARED_02": "然后单击'提交'按钮。 然后你可以再次检查余额。", 
+  "IF_YOUR_DEPOSIT_HAS_NOT_APPEARED_00": "如果您的存款尚未出现在您的余额中，请使用以下表格检查是否已收到存款.",
+  "IF_YOUR_DEPOSIT_HAS_NOT_APPEARED_01": "首先，选择网络，然后选择硬币，然后输入您存款的交易ID.",
+  "IF_YOUR_DEPOSIT_HAS_NOT_APPEARED_02": "然后单击'提交'按钮。 然后你可以再次检查余额。",
 
-"Select Coin": "选择币种",
-"Trancsaction ID": "交易 ID",
-"Crypto": "加密货币", 
-"Fiat": "法定货币", 
-"My Invesments": "我的投资",
+  "Select Coin": "选择币种",
+  "Trancsaction ID": "交易 ID",
+  "Crypto": "加密货币",
+  "Fiat": "法定货币",
+  "My Invesments": "我的投资",
 
-"Search Coin Name": "搜索硬币名称",
-"Trade":"交易",
-"Token":"令牌",
-"Minimum Amount":"最低金额",
-"Est. APR": "估计年利率",
-"Duration Days":"时间 天数",
-"Home":"主页",
-"Days@STAKINGPAGE": "天数",
-"Already have an account?":"已有账户？",
-"Dont have an account?": "没有账户？",
-"Orderbook":"订单簿",
-"Buy@EXCHANGE": "购买",
-"Sell@EXCHANGE":"卖",
-"Total Amount@MARKET":"总额" ,
-"Price@MARKET":"价格",
-"LimitORDER@MARKET":"限价订单"
-,"Exchange@UNAUTHNAV" : "交易"
+  "Search Coin Name": "搜索硬币名称",
+  "Trade": "交易",
+  "Token": "令牌",
+  "Minimum Amount": "最低金额",
+  "Est. APR": "估计年利率",
+  "Duration Days": "时间 天数",
+  "Home": "主页",
+  "Days@STAKINGPAGE": "天数",
+  "Already have an account?": "已有账户？",
+  "Dont have an account?": "没有账户？",
+  "Orderbook": "订单簿",
+  "Buy@EXCHANGE": "购买",
+  "Sell@EXCHANGE": "卖",
+  "Total Amount@MARKET": "总额",
+  "Price@MARKET": "价格",
+  "LimitORDER@MARKET": "限价订单",
+  "Exchange@UNAUTHNAV": "交易",
 
-,"Price@EXCHANGE":"价格"
-,"Amount@EXCHANGE":"数额"
-,"Total Amount@EXCHANGE":"总额"
-,"Spot Wallet":"Spot Wallet"
-,"What about the deposit process?":"存款流程如何？"
-,"Deposit Address":"存款地址"
-,"Enter Transaction ID":"输入交易ID"
-,"Transaction ID":"交易ID"
-,"Order Type":"订单类型"
-,"No Item Found":"没有找到项目"
-,"Nickname":"绰号"
-,"Time:":"日期"
-,"Verify@PHONE":"验证"
-,"Change@PW":"更改"
-,"See More":"查看更多"
-,"There are two ways to deposit":"存款有两种方式。1. 您可以存入 ALIBAE 支持的各种类型的币。比特币、以太坊、Tether、Binance Coin 等。首先，注册，完成身份验证，并在钱包菜单 - Spot 菜单中创建一个钱包。创建钱包时，请选择网络。之后，您就可以向钱包地址发送外部币了。发送硬币后，复制生成的哈希代码。在 “钱包 ”菜单 - “检查存款 ”菜单中，选择网络和硬币，在 “交易 ID ”空白处粘贴哈希代码，然后按 “提交 ”按钮。2. ALIBAE 交易所支持通过 Stripe 以 Visa/Mastercard 入金。在 Fiat 菜单中输入卡号和年/月。卡存款的手续费为 5%."
-,"There are two withdrawal methods":"有两种提款方法。 1. 从钱包菜单中将硬币提款到外部钱包。 2. 您可以从菲亚特菜单中取出您的硬币作为现金。"
-,"The coin exchange is currently the USDT market":"目前，加密货币交易所是USDT市场。 因此，您的钱包中必须有USDT。 如果您有其他硬币，请使用钱包菜单中的掉期功能将其转换为USDT，然后在Exchange菜单中进行交易。"
-,"ALIBAE Exchange is the abbreviation for Alibaba Exchange":"Alibae Exchange是Alibaba Exchange的缩写。 它于2024年以哥斯达黎加许可证3-102-914888推出。"
-,"Or continue with":"或者继续使用"
-,"Frequently Asked Questions":"常见问题"
-,"You can trade a variety of cryptocurrencies.":"你可以交易各种加密货币。"
-,"No Item Found@REFERRAL":"没有找到项目"
-,"No Item Found@WALLET":"没有找到项目"
+  "Price@EXCHANGE": "价格",
+  "Amount@EXCHANGE": "数额",
+  "Total Amount@EXCHANGE": "总额",
+  "Spot Wallet": "Spot Wallet",
+  "What about the deposit process?": "存款流程如何？",
+  "Deposit Address": "存款地址",
+  "Enter Transaction ID": "输入交易ID",
+  "Transaction ID": "交易ID",
+  "Order Type": "订单类型",
+  "No Item Found": "没有找到项目",
+  "Nickname": "绰号",
+  "Time:": "日期",
+  "Verify@PHONE": "验证",
+  "Change@PW": "更改",
+  "See More": "查看更多",
+  "There are two ways to deposit": "存款有两种方式。1. 您可以存入 BTBEX 支持的各种类型的币。比特币、以太坊、Tether、Binance Coin 等。首先，注册，完成身份验证，并在钱包菜单 - Spot 菜单中创建一个钱包。创建钱包时，请选择网络。之后，您就可以向钱包地址发送外部币了。发送硬币后，复制生成的哈希代码。在 “钱包 ”菜单 - “检查存款 ”菜单中，选择网络和硬币，在 “交易 ID ”空白处粘贴哈希代码，然后按 “提交 ”按钮。2. BTBEX 交易所支持通过 Stripe 以 Visa/Mastercard 入金。在 Fiat 菜单中输入卡号和年/月。卡存款的手续费为 5%.",
+  "There are two withdrawal methods": "有两种提款方法。 1. 从钱包菜单中将硬币提款到外部钱包。 2. 您可以从菲亚特菜单中取出您的硬币作为现金。",
+  "The coin exchange is currently the USDT market": "目前，加密货币交易所是USDT市场。 因此，您的钱包中必须有USDT。 如果您有其他硬币，请使用钱包菜单中的掉期功能将其转换为USDT，然后在Exchange菜单中进行交易。",
+  "BTBEX Exchange is the abbreviation for Alibaba Exchange": "Btbex Exchange是Alibaba Exchange的缩写。 它于2024年以哥斯达黎加许可证3-102-914888推出。",
+  "Or continue with": "或者继续使用",
+  "Frequently Asked Questions": "常见问题",
+  "You can trade a variety of cryptocurrencies.": "你可以交易各种加密货币。",
+  "No Item Found@REFERRAL": "没有找到项目",
+  "No Item Found@WALLET": "没有找到项目",
 
-,"What is Alibae Exchange?" : "什么是 Alibae Exchange"
-,"How i place a order?" :  "如何下订单"
-,"How i make a withdrawal?" : "如何提款" 
-,"What about the deposit process?" : "存款流程如何"
+  "What is Btbex Exchange?": "什么是 Btbex Exchange",
+  "How i place a order?": "如何下订单",
+  "How i make a withdrawal?": "如何提款",
+  "What about the deposit process?": "存款流程如何",
 
-,"Only send" : "仅向此地址发送"
-,"to this address. Sending any others asset to this adress may result in the loss of your deposit!": "。向该地址发送任何其他资产都可能导致您的存款损失！"
-,"SENDING-ANY-OTHER":"。向该地址发送任何其他资产都可能导致您的存款损失！"
+  "Only send": "仅向此地址发送",
+  "to this address. Sending any others asset to this adress may result in the loss of your deposit!": "。向该地址发送任何其他资产都可能导致您的存款损失！",
+  "SENDING-ANY-OTHER": "。向该地址发送任何其他资产都可能导致您的存款损失！"
 }

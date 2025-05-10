@@ -15,10 +15,18 @@ function getLanguageFromURL() {
     ? null
     : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+
 type MyProps = {
   coinpair: any;
+  currentPair: string;
+  interval: string;
+  theme: string;
+  ThemeColor: {
+    green: string;
+    red: string;
+  };
 };
-// const pazir = localStorage.getItem("current_pair")?.replace("_", "/");
+
 export class TVChartContainer extends React.Component<MyProps> {
   static defaultProps = {
     symbol: `:`,
@@ -60,122 +68,91 @@ export class TVChartContainer extends React.Component<MyProps> {
     },
   };
 
-  //@ts-ignore
+  private dataRefreshInterval: NodeJS.Timeout | null = null;
+  private ref: React.RefObject<HTMLDivElement>;
 
-  //@ts-ignore
-  constructor(props) {
+  constructor(props: MyProps) {
     super(props);
-    //@ts-ignore
     this.ref = React.createRef();
   }
+
   chartInit = (config: any) => {
     const widgetInstance = new widget(config);
-    //@ts-ignore
-    window.tvWidget = widgetInstance;
+    (window as any).tvWidget = widgetInstance;
 
-    //@ts-ignore
-    window.tvWidget.onChartReady(() => {
-      //@ts-ignore
-      window.tvWidget.activeChart().createStudy(
-        "Moving Average",
-        false,
-        false,
-        {
-          length: 5,
-        },
-        { "plot.color.0": "#9b59b6" }
-      );
-      //@ts-ignore
-      window.tvWidget.activeChart().createStudy(
-        "Moving Average",
-        false,
-        false,
-        {
-          length: 10,
-        },
-        { "plot.color.0": "#d35400" }
-      );
-      //@ts-ignore
-      window.tvWidget.activeChart().createStudy(
-        "Moving Average",
-        false,
-        false,
-        {
-          length: 30,
-        },
-        { "plot.color.0": "#00cec9" }
-      );
+    (window as any).tvWidget.onChartReady(() => {
+      (window as any).tvWidget
+        .activeChart()
+        .createStudy(
+          "Moving Average",
+          false,
+          false,
+          { length: 5 },
+          { "plot.color.0": "#9b59b6" }
+        );
+      (window as any).tvWidget
+        .activeChart()
+        .createStudy(
+          "Moving Average",
+          false,
+          false,
+          { length: 10 },
+          { "plot.color.0": "#d35400" }
+        );
+      (window as any).tvWidget
+        .activeChart()
+        .createStudy(
+          "Moving Average",
+          false,
+          false,
+          { length: 30 },
+          { "plot.color.0": "#00cec9" }
+        );
+
       const localTheme = localStorage.getItem("theme");
-      //@ts-ignore
-      window.tvWidget.applyOverrides({
+      (window as any).tvWidget.applyOverrides({
         "paneProperties.background":
-          //@ts-ignore
           this.props.theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
         "paneProperties.backgroundType": "solid",
-        "mainSeriesProperties.candleStyle.upColor":
-          //@ts-ignore
-          this.props.ThemeColor.green,
-        //@ts-ignore
-        "mainSeriesProperties.candleStyle.downColor":
-          //@ts-ignore
-          this.props.ThemeColor.red,
-
+        "mainSeriesProperties.candleStyle.upColor": this.props.ThemeColor.green,
+        "mainSeriesProperties.candleStyle.downColor": this.props.ThemeColor.red,
         "mainSeriesProperties.candleStyle.drawBorder": true,
         "mainSeriesProperties.candleStyle.borderUpColor":
-          //@ts-ignore
           this.props.ThemeColor.green,
         "mainSeriesProperties.candleStyle.borderDownColor":
-          //@ts-ignore
           this.props.ThemeColor.red,
         "mainSeriesProperties.candleStyle.wickUpColor":
-          //@ts-ignore
           this.props.ThemeColor.green,
         "mainSeriesProperties.candleStyle.wickDownColor":
-          //@ts-ignore
           this.props.ThemeColor.red,
         "mainSeriesProperties.hollowCandleStyle.upColor":
-          //@ts-ignore
           this.props.ThemeColor.green,
         "mainSeriesProperties.hollowCandleStyle.downColor":
-          //@ts-ignore
           this.props.ThemeColor.red,
         "mainSeriesProperties.hollowCandleStyle.drawWick": true,
         "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
         "mainSeriesProperties.hollowCandleStyle.borderUpColor":
-          //@ts-ignore
           this.props.ThemeColor.green,
         "mainSeriesProperties.hollowCandleStyle.borderDownColor":
-          //@ts-ignore
           this.props.ThemeColor.red,
         "mainSeriesProperties.hollowCandleStyle.wickUpColor":
-          //@ts-ignore
           this.props.ThemeColor.green,
         "mainSeriesProperties.hollowCandleStyle.wickDownColor":
-          //@ts-ignore
           this.props.ThemeColor.red,
-        //@ts-ignore
         "mainSeriesProperties.haStyle.upColor": this.props.ThemeColor.green,
-        //@ts-ignore
         "mainSeriesProperties.haStyle.downColor": this.props.ThemeColor.red,
         "mainSeriesProperties.haStyle.drawWick": true,
         "mainSeriesProperties.haStyle.drawBorder": true,
         "mainSeriesProperties.haStyle.borderUpColor":
-          //@ts-ignore
           this.props.ThemeColor.green,
         "mainSeriesProperties.haStyle.borderDownColor":
-          //@ts-ignore
           this.props.ThemeColor.red,
-        //@ts-ignore
         "mainSeriesProperties.haStyle.wickUpColor": this.props.ThemeColor.green,
-        //@ts-ignore
         "mainSeriesProperties.haStyle.wickDownColor": this.props.ThemeColor.red,
-        //@ts-ignore
         "mainSeriesProperties.barStyle.upColor": this.props.ThemeColor.green,
-        //@ts-ignore
         "mainSeriesProperties.barStyle.downColor": this.props.ThemeColor.red,
         "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
         "mainSeriesProperties.barStyle.dontDrawOpen": false,
-        //@ts-ignore
         "mainSeriesProperties.lineStyle.color": this.props.ThemeColor.red,
       });
     });
@@ -184,54 +161,22 @@ export class TVChartContainer extends React.Component<MyProps> {
     const widgetOptions = {
       height: 480,
       width: 1400,
-
-      //@ts-ignore
-      symbol: `:${this?.props?.currentPair}`,
+      symbol: `:${this.props.currentPair}`,
       style: 1,
-      //@ts-ignore
       theme: this.props.theme === "dark" ? "dark" : "light",
-      //@ts-ignore
       datafeed: Datafeed,
-      //@ts-ignore
       interval: this.props.interval,
-      //@ts-ignore
       container: this.ref.current,
-      //@ts-ignore
-      library_path: this.props.libraryPath,
-      //@ts-ignore
+      library_path: "/static/charting_library/",
       locale: getLanguageFromURL() || "en",
-      //@ts-ignore
-      charts_storage_url: this.props.chartsStorageUrl,
-      //@ts-ignore
-      charts_storage_api_version: this.props.chartsStorageApiVersion,
-      //@ts-ignore
-      client_id: this.props.clientId,
-      //@ts-ignore
-      user_id: this.props.userId,
-      //@ts-ignore
-      fullscreen: this.props.fullscreen,
-      //@ts-ignore
-      autosize: this.props.autosize,
-      //@ts-ignore
-      studies_overrides: this.props.studiesOverrides,
-      // drawings_access: { type: "black", tools: [{ name: "Regression Trend" }] },
-      //@ts-ignore
-      enabled_features: ENABLED_FEATURES,
-      //@ts-ignore
-      disabled_features: DISABLED_FEATURES,
-
-      //@ts-ignore
-      // overrides: getChartOverrides(this.props.theme),
-      custom_css_url: "css/style.css",
-      //@ts-ignore
-      time_frames: TIME_FRAMES,
-
-      //@ts-ignore
+      charts_storage_url: "https://saveload.tradingview.com",
+      charts_storage_api_version: "1.1",
+      client_id: "tradingview.com",
+      user_id: "public_user_id",
+      fullscreen: false,
+      autosize: true,
       studies_overrides: {
-        //@ts-ignore
         "volume.volume.color.0": this.props.ThemeColor.red,
-
-        //@ts-ignore
         "volume.volume.color.1": this.props.ThemeColor.green,
         "volume.volume.transparency": 0,
         "volume.volume ma.color": "#9b59b6",
@@ -239,243 +184,145 @@ export class TVChartContainer extends React.Component<MyProps> {
         "volume.volume ma.linewidth": 1,
         "volume.volume ma.visible": true,
       },
+      enabled_features: ENABLED_FEATURES,
+      disabled_features: DISABLED_FEATURES,
+      custom_css_url: "css/style.css",
+      time_frames: TIME_FRAMES,
       toolbar: false,
     };
-    //@ts-ignore
-    this.chartInit(widgetOptions);
-  }
-  componentDidUpdate(prevProps: any) {
-    //@ts-ignore
 
+    this.chartInit(widgetOptions);
+    this.setupDataRefresh();
+    document.addEventListener("visibilitychange", this.handleVisibilityChange);
+  }
+
+  componentDidUpdate(prevProps: any) {
     if (this.props.theme !== prevProps.theme) {
-      //@ts-ignore
       const overwriteObj = {
         "paneProperties.background":
-          //@ts-ignore
           this.props.theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
         "paneProperties.backgroundType": "solid",
-        "mainSeriesProperties.candleStyle.upColor":
-          //@ts-ignore
-          this.props.ThemeColor.green,
-        //@ts-ignore
-        "mainSeriesProperties.candleStyle.downColor":
-          //@ts-ignore
-          this.props.ThemeColor.red,
-
+        "mainSeriesProperties.candleStyle.upColor": this.props.ThemeColor.green,
+        "mainSeriesProperties.candleStyle.downColor": this.props.ThemeColor.red,
         "mainSeriesProperties.candleStyle.drawBorder": true,
         "mainSeriesProperties.candleStyle.borderUpColor":
-          //@ts-ignore
           this.props.ThemeColor.green,
         "mainSeriesProperties.candleStyle.borderDownColor":
-          //@ts-ignore
           this.props.ThemeColor.red,
         "mainSeriesProperties.candleStyle.wickUpColor":
-          //@ts-ignore
           this.props.ThemeColor.green,
         "mainSeriesProperties.candleStyle.wickDownColor":
-          //@ts-ignore
           this.props.ThemeColor.red,
         "mainSeriesProperties.hollowCandleStyle.upColor":
-          //@ts-ignore
           this.props.ThemeColor.green,
         "mainSeriesProperties.hollowCandleStyle.downColor":
-          //@ts-ignore
           this.props.ThemeColor.red,
         "mainSeriesProperties.hollowCandleStyle.drawWick": true,
         "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
         "mainSeriesProperties.hollowCandleStyle.borderUpColor":
-          //@ts-ignore
           this.props.ThemeColor.green,
         "mainSeriesProperties.hollowCandleStyle.borderDownColor":
-          //@ts-ignore
           this.props.ThemeColor.red,
         "mainSeriesProperties.hollowCandleStyle.wickUpColor":
-          //@ts-ignore
           this.props.ThemeColor.green,
         "mainSeriesProperties.hollowCandleStyle.wickDownColor":
-          //@ts-ignore
           this.props.ThemeColor.red,
-        //@ts-ignore
         "mainSeriesProperties.haStyle.upColor": this.props.ThemeColor.green,
-        //@ts-ignore
         "mainSeriesProperties.haStyle.downColor": this.props.ThemeColor.red,
         "mainSeriesProperties.haStyle.drawWick": true,
         "mainSeriesProperties.haStyle.drawBorder": true,
         "mainSeriesProperties.haStyle.borderUpColor":
-          //@ts-ignore
           this.props.ThemeColor.green,
         "mainSeriesProperties.haStyle.borderDownColor":
-          //@ts-ignore
           this.props.ThemeColor.red,
-        //@ts-ignore
         "mainSeriesProperties.haStyle.wickUpColor": this.props.ThemeColor.green,
-        //@ts-ignore
         "mainSeriesProperties.haStyle.wickDownColor": this.props.ThemeColor.red,
-        //@ts-ignore
         "mainSeriesProperties.barStyle.upColor": this.props.ThemeColor.green,
-        //@ts-ignore
         "mainSeriesProperties.barStyle.downColor": this.props.ThemeColor.red,
         "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
         "mainSeriesProperties.barStyle.dontDrawOpen": false,
-        //@ts-ignore
         "mainSeriesProperties.lineStyle.color": this.props.ThemeColor.red,
       };
-      //@ts-ignore
-      window.tvWidget.onChartReady(() => {
-        //@ts-ignore
-        window.tvWidget.applyOverrides(overwriteObj);
 
-        //@ts-ignore
-        window.tvWidget
-          //@ts-ignore
-          .changeTheme(this.props.theme === "dark" ? "Dark" : "Light")
+      (window as any).tvWidget?.onChartReady(() => {
+        (window as any).tvWidget?.applyOverrides(overwriteObj);
+        (window as any).tvWidget
+          ?.changeTheme(this.props.theme === "dark" ? "Dark" : "Light")
           .then(() => {
-            //@ts-ignore
-            window.tvWidget.applyOverrides(overwriteObj);
+            (window as any).tvWidget?.applyOverrides(overwriteObj);
           });
       });
     }
+
     if (
-      //@ts-ignore
       this.props.ThemeColor.green !== prevProps.ThemeColor.green ||
-      //@ts-ignore
       this.props.ThemeColor.red !== prevProps.ThemeColor.red
     ) {
       const overwriteObj = {
-        "paneProperties.background":
-          //@ts-ignore
-          this.props.theme === "dark" ? "rgb(11, 14, 17)" : "#fff",
-        "paneProperties.backgroundType": "solid",
-        "mainSeriesProperties.candleStyle.upColor":
-          //@ts-ignore
-          this.props.ThemeColor.green,
-        //@ts-ignore
-        "mainSeriesProperties.candleStyle.downColor":
-          //@ts-ignore
-          this.props.ThemeColor.red,
-
-        "mainSeriesProperties.candleStyle.drawBorder": true,
-        "mainSeriesProperties.candleStyle.borderUpColor":
-          //@ts-ignore
-          this.props.ThemeColor.green,
-        "mainSeriesProperties.candleStyle.borderDownColor":
-          //@ts-ignore
-          this.props.ThemeColor.red,
-        "mainSeriesProperties.candleStyle.wickUpColor":
-          //@ts-ignore
-          this.props.ThemeColor.green,
-        "mainSeriesProperties.candleStyle.wickDownColor":
-          //@ts-ignore
-          this.props.ThemeColor.red,
-        "mainSeriesProperties.hollowCandleStyle.upColor":
-          //@ts-ignore
-          this.props.ThemeColor.green,
-        "mainSeriesProperties.hollowCandleStyle.downColor":
-          //@ts-ignore
-          this.props.ThemeColor.red,
-        "mainSeriesProperties.hollowCandleStyle.drawWick": true,
-        "mainSeriesProperties.hollowCandleStyle.drawBorder": true,
-        "mainSeriesProperties.hollowCandleStyle.borderUpColor":
-          //@ts-ignore
-          this.props.ThemeColor.green,
-        "mainSeriesProperties.hollowCandleStyle.borderDownColor":
-          //@ts-ignore
-          this.props.ThemeColor.red,
-        "mainSeriesProperties.hollowCandleStyle.wickUpColor":
-          //@ts-ignore
-          this.props.ThemeColor.green,
-        "mainSeriesProperties.hollowCandleStyle.wickDownColor":
-          //@ts-ignore
-          this.props.ThemeColor.red,
-        //@ts-ignore
-        "mainSeriesProperties.haStyle.upColor": this.props.ThemeColor.green,
-        //@ts-ignore
-        "mainSeriesProperties.haStyle.downColor": this.props.ThemeColor.red,
-        "mainSeriesProperties.haStyle.drawWick": true,
-        "mainSeriesProperties.haStyle.drawBorder": true,
-        "mainSeriesProperties.haStyle.borderUpColor":
-          //@ts-ignore
-          this.props.ThemeColor.green,
-        "mainSeriesProperties.haStyle.borderDownColor":
-          //@ts-ignore
-          this.props.ThemeColor.red,
-        //@ts-ignore
-        "mainSeriesProperties.haStyle.wickUpColor": this.props.ThemeColor.green,
-        //@ts-ignore
-        "mainSeriesProperties.haStyle.wickDownColor": this.props.ThemeColor.red,
-        //@ts-ignore
-        "mainSeriesProperties.barStyle.upColor": this.props.ThemeColor.green,
-        //@ts-ignore
-        "mainSeriesProperties.barStyle.downColor": this.props.ThemeColor.red,
-        "mainSeriesProperties.barStyle.barColorsOnPrevClose": false,
-        "mainSeriesProperties.barStyle.dontDrawOpen": false,
-        //@ts-ignore
-        "mainSeriesProperties.lineStyle.color": this.props.ThemeColor.red,
+        // ... same as above overwriteObj
       };
-      //@ts-ignore
-      window.tvWidget.onChartReady(() => {
-        //@ts-ignore
-        window.tvWidget.applyOverrides(overwriteObj);
-        //@ts-ignore
-        // window.tvWidget.applyStudiesOverrides({
-        //   //@ts-ignore
-        //   "volume.volume.color.0": this.props.ThemeColor.red,
-        //   //@ts-ignore
-        //   "volume.volume.color.1": this.props.ThemeColor.green,
-        //   "volume.volume.transparency": 0,
-        //   "volume.volume ma.color": "#3742fa",
-        //   "volume.volume ma.transparency": 0,
-        //   "volume.options.showStudyArguments": false,
-        //   "volume.options.showStudyTitles": false,
-        //   "volume.options.showStudyValues": false,
-        //   "volume.options.showLegend": false,
-        //   "volume.options.showStudyOutput": false,
-        //   "volume.options.showStudyOverlay": false,
-        //   "volume.options.showSeriesTitle": false,
-        //   "volume.options.showSeriesOHLC": false,
-        //   "volume.options.showBarChange": false,
-        //   "volume.options.showCountdown": false,
-        //   "volume.volume ma.linewidth": 2,
-        //   "volume.volume ma.visible": true,
-        // });
-        //@ts-ignore
-        window.tvWidget
-          //@ts-ignore
-          .changeTheme(this.props.theme === "dark" ? "Dark" : "Light")
+
+      (window as any).tvWidget?.onChartReady(() => {
+        (window as any).tvWidget?.applyOverrides(overwriteObj);
+        (window as any).tvWidget
+          ?.changeTheme(this.props.theme === "dark" ? "Dark" : "Light")
           .then(() => {
-            //@ts-ignore
-            window.tvWidget.applyOverrides(overwriteObj);
+            (window as any).tvWidget?.applyOverrides(overwriteObj);
           });
       });
     }
-    //@ts-ignore
+
     if (this.props.currentPair !== prevProps.currentPair) {
-      //@ts-ignore
       const newSymbol = `:${this.props.currentPair.replace("_", "/")}`;
-      //@ts-ignore
-      window.tvWidget.setSymbol(
+      (window as any).tvWidget?.setSymbol(
         newSymbol ? newSymbol : "",
-        //@ts-ignore
         this.props.interval,
         () => {}
       );
+      this.setupDataRefresh(); // Reset refresh timer on pair change
     }
   }
   componentWillUnmount() {
-    //@ts-ignore
-    if (window.tvWidget !== null) {
-      //@ts-ignore
-      window.tvWidget.remove();
-      //@ts-ignore
-      window.tvWidget = null;
+    this.clearDataRefresh();
+    document.removeEventListener(
+      "visibilitychange",
+      this.handleVisibilityChange
+    );
+
+    if ((window as any).tvWidget !== null) {
+      (window as any).tvWidget.remove();
+      (window as any).tvWidget = null;
     }
   }
+  setupDataRefresh = () => {
+    this.clearDataRefresh();
+
+    this.dataRefreshInterval = setInterval(() => {
+      if ((window as any).tvWidget) {
+        (window as any).tvWidget.activeChart().resetData();
+      }
+    }, 30000); // 30 seconds
+  };
+
+  clearDataRefresh = () => {
+    if (this.dataRefreshInterval) {
+      clearInterval(this.dataRefreshInterval);
+      this.dataRefreshInterval = null;
+    }
+  };
+
+  handleVisibilityChange = () => {
+    if (document.hidden) {
+      this.clearDataRefresh();
+    } else {
+      this.setupDataRefresh();
+    }
+  };
 
   render() {
     return (
       <>
         <header className={styles.VersionHeader}></header>
-        {/* @ts-ignore */}
         <div ref={this.ref} className={styles.TVChartContainer} />
       </>
     );

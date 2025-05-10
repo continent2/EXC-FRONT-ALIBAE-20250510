@@ -120,11 +120,10 @@ export default function TradesTable({ selectedCurrency }: any) {
       accessor: "change",
       Cell: ({ cell }: any) => (
         <span
-          className={`tradex-text-base ${
-            parseFloat(cell?.value) >= 0
-              ? " tradex-text-green-600"
-              : "tradex-text-red-600"
-          } `}
+          className={`tradex-text-base ${parseFloat(cell?.value) >= 0
+            ? " tradex-text-green-600"
+            : "tradex-text-red-600"
+            } `}
         >
           {formatCurrency(
             cell?.value,
@@ -237,10 +236,9 @@ export default function TradesTable({ selectedCurrency }: any) {
               <button
                 key={index}
                 onClick={() => setSelectType(item?.value)}
-                className={` tradex-text-base sm:tradex-text-xl sm:tradex-leading-6 tradex-text-title tradex-relative ${
-                  selectType == item.value &&
+                className={` tradex-text-base sm:tradex-text-xl sm:tradex-leading-6 tradex-text-title tradex-relative ${selectType == item.value &&
                   "tradex-font-semibold after:-tradex-bottom-[8px] after:tradex-absolute md:after:-tradex-bottom-[28px] after:tradex-left-0 after:tradex-w-full after:tradex-h-[4px] after:tradex-bg-primary after:tradex-inline-block"
-                }`}
+                  }`}
               >
                 {t(item?.name)}
               </button>
@@ -259,7 +257,8 @@ export default function TradesTable({ selectedCurrency }: any) {
         </div>
         <div className=" tradex-space-y-3">
           <h3 className=" !tradex-text-title tradex-text-xl sm:tradex-text-[28px] sm:tradex-leading-8 tradex-font-bold">
-            {settings?.app_title}
+            {/* {settings?.app_title} */}
+            Btbex
             {t(` Market Watch`)}
           </h3>
           <p className=" tradex-text-sm sm:tradex-text-xl sm:tradex-leading-6 !tradex-text-body">

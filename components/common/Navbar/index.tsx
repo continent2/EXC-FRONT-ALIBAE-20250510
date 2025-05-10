@@ -37,6 +37,7 @@ import { GiBuyCard, GiSellCard, GiTrade } from "react-icons/gi";
 import { GoStop } from "react-icons/go";
 import { AiFillCaretDown, AiFillGift, AiOutlineClose } from "react-icons/ai";
 import PlaceTopLeft from "components/gradient/placeTopLeft";
+import { LanguageList } from "helpers/lang";
 
 const Navbar = ({
   settings,
@@ -117,7 +118,7 @@ const Navbar = ({
                     <Link href="/">
                       <a href="">
                         <img
-                          src={logo || "/green_logo.png"}
+                          src="/btbex_logo.svg"
                           className="img-fluid cp-user-logo-large max-h-50"
                           alt=""
                         />
@@ -2007,7 +2008,7 @@ const Navbar = ({
                             }}
                           >
                             {
-                              settings?.LanguageList?.find(
+                              LanguageList?.find(
                                 (item: any) => item.key === router.locale
                               )?.name
                             }
@@ -2035,7 +2036,7 @@ const Navbar = ({
                           <AiOutlineClose size={20} />
                         </span>
                       </li>
-                      {settings?.LanguageList?.map((item: any, index: any) => (
+                      {LanguageList?.map((item: any, index: any) => (
                         <li
                           className={
                             item.key === router.locale

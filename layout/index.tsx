@@ -175,11 +175,12 @@ const Index = ({ children }: any) => {
       <>
         <Head>
           <title>
-            {metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}
+            Btbex
+            {/* {metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME} */}
           </title>
           <link
             rel="icon"
-            href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
+            href={process.env.NEXT_PUBLIC_FAVICON}
           />
           <meta
             name="viewport"
@@ -188,9 +189,10 @@ const Index = ({ children }: any) => {
           <meta
             name="title"
             property="og:title"
-            content={
-              settings?.seo_social_title || process.env.NEXT_PUBLIC_SEO_TITLE
-            }
+            content="Btbex"
+            // content={
+            //   settings?.seo_social_title || process.env.NEXT_PUBLIC_SEO_TITLE
+            // }
           />
 
           <meta
@@ -198,7 +200,7 @@ const Index = ({ children }: any) => {
             property="og:description"
             content={
               settings?.seo_meta_description || process.env.NEXT_PUBLIC_SEO_DES
-            }
+            } 
           />
           <meta
             name="keywords"
@@ -220,16 +222,20 @@ const Index = ({ children }: any) => {
   return navbarVisible ? (
     <div>
       <Head>
-        <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
+        <title>
+          {/* {metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME} */}
+          Btbex
+        </title>
         <link
           rel="icon"
-          href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
+          href={process.env.NEXT_PUBLIC_FAVICON}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="title"
           property="og:title"
-          content={settings?.seo_social_title}
+          // content={settings?.seo_social_title}
+          content="Btbex"
         />
 
         <meta
@@ -263,12 +269,16 @@ const Index = ({ children }: any) => {
   ) : (
     <>
       <Head>
-        <title>{metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME}</title>
+        <title>
+          {/* {metaData?.app_title || process.env.NEXT_PUBLIC_APP_NAME} */}
+          Btbex
+        </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="title"
           property="og:title"
-          content={settings?.seo_social_title}
+          // content={settings?.seo_social_title}
+          content="Btbex"
         />
 
         <meta
@@ -285,7 +295,7 @@ const Index = ({ children }: any) => {
         <meta name="image" property="og:image" content={settings?.seo_image} />
         <link
           rel="icon"
-          href={metaData?.favicon || process.env.NEXT_PUBLIC_FAVICON}
+          href={process.env.NEXT_PUBLIC_FAVICON}
         />
       </Head>
       <ToastContainer

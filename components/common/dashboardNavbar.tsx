@@ -74,7 +74,7 @@ const DashboardNavbar = () => {
                 <Link href="/">
                   <a href="">
                     <img
-                      src={logo || ""}
+                      src="/btbex_logo.svg"
                       className="img-fluid cp-user-logo-large max-h-50"
                       alt=""
                     />
@@ -657,7 +657,7 @@ const DashboardNavbar = () => {
                       </span>
                     </a>
                     <ul className="">
-                      {settings?.LanguageList?.map((item: any, index: any) => (
+                      {LanguageList?.map((item: any, index: any) => (
                         <li key={index}>
                           <Link href={router.asPath} locale={item.key}>
                             <a className="py-1">{item.name}</a>

@@ -260,7 +260,7 @@ const DemoNotificationDropdown = ({
                       </span>
                     </a>
                     <ul className="dropdown-menu-main right-0 left-auto">
-                      {settings?.LanguageList?.map((item: any, index: any) => (
+                      {LanguageList.map((item: any, index: any) => (
                         <li key={index}>
                           <Link href={router.asPath} locale={item.key}>
                             <a className="py-1 menu-hover">{item.name}</a>

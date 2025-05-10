@@ -10,6 +10,7 @@ import {
   changeThemeSettingsDashboard,
   swapGreenToRedAndRedToGeen,
 } from "helpers/functions";
+import { LanguageList } from "helpers/lang";
 import moment from "moment";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
@@ -270,7 +271,7 @@ const NotificationDropdown = ({
                       </span>
                     </a>
                     <ul className="dropdown-menu-main display-grid grid-temp-col-2 w-370 lang-list-position">
-                      {settings?.LanguageList?.map((item: any, index: any) => (
+                      {LanguageList.map((item: any, index: any) => (
                         <li key={index}>
                           <Link href={router.asPath} locale={item.key}>
                             <a className="py-1 menu-hover">{item.name}</a>

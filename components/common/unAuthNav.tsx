@@ -31,6 +31,7 @@ import {
 } from "helpers/core-constants";
 import { FiChevronDown, FiSettings } from "react-icons/fi";
 import { AiFillCaretDown } from "react-icons/ai";
+import { LanguageList } from "helpers/lang";
 
 const UnAuthNav = ({
   setThemeColor,
@@ -109,7 +110,7 @@ const UnAuthNav = ({
                 <Link href="/">
                   <a>
                     <img
-                      src={logo || "/green_logo.png"}
+                      src="/btbex_logo.svg"
                       className="img-fluid cp-user-logo-large"
                       style={{ maxHeight: "50px" }}
                       alt=""
@@ -267,7 +268,7 @@ const UnAuthNav = ({
                       </span>
                     </a>
                     <ul className="dropdown-menu-main display-grid w-370 display-grid grid-temp-col-2 w-370 lang-list-position">
-                      {settings?.LanguageList?.map((item: any, index: any) => (
+                      {LanguageList.map((item: any, index: any) => (
                         <li key={index}>
                           <Link href={router.asPath} locale={item.key}>
                             <a className="py-1 menu-hover">{item.name}</a>
@@ -900,7 +901,7 @@ const UnAuthNav = ({
                         }}
                       >
                         {
-                          settings?.LanguageList?.find(
+                          LanguageList?.find(
                             (item: any) => item.key === router.locale
                           )?.name
                         }
@@ -926,7 +927,7 @@ const UnAuthNav = ({
                       <AiOutlineClose size={20} />
                     </span>
                   </li>
-                  {settings?.LanguageList?.map((item: any, index: any) => (
+                  {LanguageList.map((item: any, index: any) => (
                     <li
                       className={
                         item.key === router.locale

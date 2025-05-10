@@ -10,30 +10,43 @@ import { useState } from "react";
 import { getFaqList } from "service/faq";
 import { customPage, landingPage } from "service/landing-page";
 
-const questions = [ '' , 
-  "What is Alibae Exchange ?"   ,
-  "How i place a order ?"  ,
-  "How i make a withdrawal ?"  ,
-  "What about the deposit process?"
-]
+const questions = [
+  "",
+  "What is Btbex Exchange ?",
+  "How i place a order ?",
+  "How i make a withdrawal ?",
+  "What about the deposit process?",
+];
 const answers = [
-  "ALIBAE Exchange is the abbreviation for Alibaba Exchange",  
-  "The coin exchange is currently the USDT market",  
-  "There are two withdrawal methods",  
-  "There are two ways to deposit"
-]
-let faqs = [ 
-  { question : "What is Alibae Exchange?" , keyword : "ALIBAE Exchange is the abbreviation for Alibaba Exchange" } ,
-  { question : "How i place a order?" , keyword : "The coin exchange is currently the USDT market" },
-  { question : "How i make a withdrawal?" , keyword : "There are two withdrawal methods" },
-  { question : "What about the deposit process?" , keyword : "There are two ways to deposit" }
-]
+  "BTBEX Exchange is the abbreviation for Alibaba Exchange",
+  "The coin exchange is currently the USDT market",
+  "There are two withdrawal methods",
+  "There are two ways to deposit",
+];
+let faqs = [
+  {
+    question: "What is Btbex Exchange?",
+    keyword: "BTBEX Exchange is the abbreviation for Alibaba Exchange",
+  },
+  {
+    question: "How i place a order?",
+    keyword: "The coin exchange is currently the USDT market",
+  },
+  {
+    question: "How i make a withdrawal?",
+    keyword: "There are two withdrawal methods",
+  },
+  {
+    question: "What about the deposit process?",
+    keyword: "There are two ways to deposit",
+  },
+];
 // let faqs = []
 // for ( let idx = 0 ; idx < questions?.length ; idx ++ ){
 //   faqs.push ( { question : questions [ idx ] , keyword : answers[ idx ] } )
 // }
 // const Index: NextPage = ({ faq }: any) => {
-const Index: NextPage = ({ faq }: any) => {  
+const Index: NextPage = ({ faq }: any) => {
   const { t } = useTranslation("common");
   const [active, setActive] = useState<number>(1);
   const handleActive = (index: number) => {
@@ -62,7 +75,7 @@ const Index: NextPage = ({ faq }: any) => {
               </div>
               <div className="accordion" id="accordionExample">
                 {/* {faq?.data?.map((item: any, index: number) => ( */}
-                { faqs.map((item: any, index: number) => (
+                {faqs.map((item: any, index: number) => (
                   <div key={`faq${index}`} className="">
                     <div className="card">
                       <div
@@ -79,7 +92,7 @@ const Index: NextPage = ({ faq }: any) => {
                             aria-controls="collapseOne"
                           >
                             {/* {  item.  } */}
-                            { t( item.question ) }
+                            {t(item.question)}
                           </button>
                           <i
                             className={`fas ${
@@ -97,7 +110,7 @@ const Index: NextPage = ({ faq }: any) => {
                         aria-labelledby="headingOne"
                         data-parent="#accordionExample"
                       >
-                        <div className="card-body">{ t( item.keyword ) }</div>
+                        <div className="card-body">{t(item.keyword)}</div>
                       </div>
                     </div>
                   </div>

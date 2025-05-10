@@ -2,16 +2,18 @@ import { FAQ_TYPE_DEPOSIT, FAQ_TYPE_WITHDRAWN } from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
-let faqs__ = [ 
-  // { question : "What is Alibae Exchange ?" , key word : "ALIBAE Exchange is the abbreviation for Alibaba Exchange" } ,
+let faqs__ = [
+  // { question : "What is Btbex Exchange ?" , key word : "BTBEX Exchange is the abbreviation for Alibaba Exchange" } ,
   // { question : "How i place a order ?" , keywo rd : "The coin exchange is currently the USDT market" },
   // { question : "How i make a withdrawal ?" , keywo rd : "There are two withdrawal methods" },
-    { question : "What about the deposit process?" , 
-      keyword : "There are two ways to deposit" , 
-      faq_type_id:2 , 
-      id:6 }
-  ]
-  
+  {
+    question: "What about the deposit process?",
+    keyword: "There are two ways to deposit",
+    faq_type_id: 2,
+    id: 6,
+  },
+];
+
 const FAQ = ({ faqs, type }: any) => {
   const { t } = useTranslation("common");
   return (
@@ -32,7 +34,7 @@ const FAQ = ({ faqs, type }: any) => {
                       aria-expanded="false"
                       aria-controls={"collapseThree" + faq.id}
                     >
-                      { t( faq?.question ) }
+                      {t(faq?.question)}
                       <svg
                         stroke="currentColor"
                         fill="currentColor"
@@ -53,9 +55,7 @@ const FAQ = ({ faqs, type }: any) => {
                     aria-labelledby="headingThree"
                     data-parent="#accordionExample"
                   >
-                    <div className="p-3">
-                      { t( faq?.keyword ) }
-                    </div>
+                    <div className="p-3">{t(faq?.keyword)}</div>
                   </div>
                 </div>
               </div>

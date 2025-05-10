@@ -102,8 +102,9 @@ const DemoTradeNavbar = ({
                   <div className="cp-user-logo">
                     <Link href="/">
                       <a href="">
+                        hello
                         <img
-                          src={logo || ""}
+                          src="/btbex_logo.svg"
                           className="img-fluid cp-user-logo-large max-h-50"
                           alt=""
                         />
@@ -316,7 +317,7 @@ const DemoTradeNavbar = ({
                             }}
                           >
                             {
-                              settings?.LanguageList?.find(
+                              LanguageList.find(
                                 (item: any) => item.key === router.locale
                               ).name
                             }
@@ -344,7 +345,7 @@ const DemoTradeNavbar = ({
                           <AiOutlineClose size={20} />
                         </span>
                       </li>
-                      {settings?.LanguageList?.map((item: any, index: any) => (
+                      {LanguageList.map((item: any, index: any) => (
                         <li
                           className={
                             item.key === router.locale

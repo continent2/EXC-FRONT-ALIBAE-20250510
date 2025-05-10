@@ -94,8 +94,8 @@ const Footer = ({ isTopPaddingEnable = true }: any) => {
                 <Link href="/">
                   <a href="">
                     <img
-                      src={logo || "/green_logo.png"}
-                      className=" tradex-max-h-[64px] tradex-object-cover tradex-object-center"
+                      src="/btbex_logo.svg"
+                      className=" tradex-max-h-[104px] tradex-object-cover tradex-object-center"
                       alt=""
                     />
                   </a>
@@ -122,7 +122,7 @@ const Footer = ({ isTopPaddingEnable = true }: any) => {
                       <Link href={"/staking"}>
                         <a className=" tradex-text-sm !tradex-text-white ">
                           {/* {t("Staking")} */}
-                          { "Staking" }
+                          {"Staking"}
                         </a>
                       </Link>
                     )}
@@ -306,7 +306,8 @@ const Footer = ({ isTopPaddingEnable = true }: any) => {
               <div className="font-rubik">
                 {(copyright_text && copyright_text) || t("Copyright©2022")}{" "}
               </div>
-              <div className="font-rubik">{settings?.app_title ?? t("TradexPro")}</div>
+              {/*settings?.app_title*/}
+              <div className="font-rubik">Btbex</div>
             </div>
           </div>
           {/* <div className="tradex-container tradex-pt-6 tradex-border-t tradex-border-[#D9D9D9]/50 tradex-flex tradex-justify-center">

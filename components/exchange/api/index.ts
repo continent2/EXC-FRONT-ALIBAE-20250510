@@ -29,7 +29,7 @@ export default {
     exchange: any,
     symbolType: any,
     onResultReadyCallback: any
-  ) => {},
+  ) => { },
   resolveSymbol: (
     symbolName: any,
     onSymbolResolvedCallback: any,
@@ -71,6 +71,9 @@ export default {
     const countBack = periodParams.countBack;
     const countForward = periodParams.countForward;
 
+    // Timestamp to query to prevent caching
+    const timestamp = new Date().getTime();
+
     historyProvider
       .getBars(
         symbolInfo,
@@ -78,7 +81,8 @@ export default {
         from * 1000,
         to * 1000,
         countBack,
-        countForward
+        countForward,
+        timestamp
       )
       .then((bars: any) => {
         if (bars.length) {
@@ -157,7 +161,7 @@ export default {
     // Optional
   },
 
-  getServerTime: (cb: any) => {},
+  getServerTime: (cb: any) => { },
 };
 
 function calculateMovingAverage(bars: any, period: number) {

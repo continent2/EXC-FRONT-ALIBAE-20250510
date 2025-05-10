@@ -44,6 +44,7 @@ Tags: admin, best react admin template, das
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
 :root {
   /* --primary-color: #f0b90b; */
   --primary-color: 16, 128, 89;
@@ -614,16 +615,12 @@ client-area
 
 .animate-button-one:after {
   --r: calc(1lh / 18);
-  background: repeating-linear-gradient(90deg, #7d7d7d 0, #ddd, #7d7d7d 50%)
-    right/200%;
+  background: repeating-linear-gradient(90deg, #7d7d7d 0, #ddd, #7d7d7d 50%) right/200%;
   animation: b 1s linear infinite;
   padding: calc(4 * var(--r)) calc(6 * var(--r));
   clippath: inset(0 0 0 calc(100% - 60px));
   /* I can optimize the mask with fewer gradients, but I did a fast implementation */
-  --m: /calc(50% / 3) calc(2 * var(--r)) repeat-x content-box radial-gradient(var(
-          --r
-        )
-        at var(--r), #000 70%, #0000 82%);
+  --m: /calc(50% / 3) calc(2 * var(--r)) repeat-x content-box radial-gradient(var(--r) at var(--r), #000 70%, #0000 82%);
   -webkit-mask: calc(3 * var(--r)) calc(0 * var(--r)) var(--m),
     calc(5 * var(--r)) calc(0 * var(--r)) var(--m),
     calc(5 * var(--r)) calc(2 * var(--r)) var(--m),
@@ -651,6 +648,7 @@ client-area
   transform: translate(0);
   clippath: inset(0);
 }
+
 .glass-button {
   display: inline-block;
   padding: 12px 24px;
@@ -666,19 +664,18 @@ client-area
 }
 
 .glass-button:hover {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.3
-  ); /* Glass background color on hover */
-  border-color: rgba(
-    255,
-    255,
-    255,
-    0.7
-  ); /* Border color on hover with increased transparency */
-  transform: scale(1.05); /* Scale the button on hover for a subtle animation */
+  background-color: rgba(255,
+      255,
+      255,
+      0.3);
+  /* Glass background color on hover */
+  border-color: rgba(255,
+      255,
+      255,
+      0.7);
+  /* Border color on hover with increased transparency */
+  transform: scale(1.05);
+  /* Scale the button on hover for a subtle animation */
   color: var(--font-color);
 }
 
@@ -689,11 +686,9 @@ client-area
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.3)
-  );
+  background: linear-gradient(45deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.3));
   pointer-events: none;
   z-index: -1;
   transition: opacity 0.3s;
@@ -731,6 +726,7 @@ client-area
   0% {
     background-position: 0%;
   }
+
   100% {
     background-position: 400%;
   }
@@ -744,13 +740,11 @@ client-area
   bottom: -5px;
   right: -5px;
   z-index: -1;
-  background: linear-gradient(
-    90deg,
-    rgb(var(--primary-color)),
-    #f441a5,
-    rgb(var(--primary-color)),
-    rgb(var(--primary-color))
-  );
+  background: linear-gradient(90deg,
+      rgb(var(--primary-color)),
+      #f441a5,
+      rgb(var(--primary-color)),
+      rgb(var(--primary-color)));
   background-size: 400%;
   border-radius: 40px;
   opacity: 0;
@@ -932,10 +926,12 @@ client-area
     -webkit-transform: translateY(0) translateX(0);
     transform: translateY(0) translateX(0);
   }
+
   50% {
     -webkit-transform: translateY(15px) translateX(7);
     transform: translateY(15px) translateX(7);
   }
+
   100% {
     -webkit-transform: translateY(0) translateX(0);
     transform: translateY(0) translateX(0);
@@ -947,10 +943,12 @@ client-area
     -webkit-transform: translateY(0) translateX(0);
     transform: translateY(0) translateX(0);
   }
+
   50% {
     -webkit-transform: translateY(15px) translateX(7px);
     transform: translateY(15px) translateX(7px);
   }
+
   100% {
     -webkit-transform: translateY(0) translateX(0);
     transform: translateY(0) translateX(0);
@@ -962,6 +960,7 @@ client-area
     font-size: 13px;
     padding: 25px 10px;
   }
+
   .primary-btn {
     width: 190px;
     padding: 13px 10px;
@@ -1005,11 +1004,13 @@ client-area
   font-size: 16px;
   font-weight: 500;
 }
+
 .hero-banner-img {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .hero-banner-area .hero-banner-bottom {
   margin-top: 80px;
 }
@@ -1067,6 +1068,7 @@ client-area
   .hero-banner-area .banner-title {
     font-size: 36px;
   }
+
   .hero-banner-area {
     padding: 100px 0 80px 0;
   }
@@ -1076,10 +1078,12 @@ client-area
   .hero-banner-area .banner-title {
     font-size: 32px;
   }
+
   .hero-banner-area .hero-banner-bottom .item-list .single-item {
     width: 25%;
     margin: 10px 0;
   }
+
   .hero-banner-area .hero-banner-bottom {
     margin-top: 30px;
   }
@@ -1089,6 +1093,7 @@ client-area
   .hero-banner-area .banner-title {
     font-size: 32px;
   }
+
   .hero-banner-area .hero-banner-bottom .item-list .single-item {
     width: 50%;
   }
@@ -1101,6 +1106,7 @@ client-area
 .about-area {
   padding: 40px 0;
 }
+
 .single-banner {
   /* padding: 20px; */
   display: flex;
@@ -1111,6 +1117,7 @@ client-area
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
+
 .about-area .single-banner a {
   display: block;
 }
@@ -1146,6 +1153,7 @@ client-area
 .about-area .owl-carousel .owl-nav button.owl-next {
   right: 10px;
 }
+
 /* styles.css */
 
 /* styles.css */
@@ -1468,8 +1476,7 @@ client-area
 }
 
 .single-card:hover .card-icon {
-  transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg)
-    rotateY(0deg) rotateZ(0deg) skew(0deg);
+  transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg);
   transform-style: preserve-3d;
   transition: 0.3s;
 }
@@ -1516,6 +1523,7 @@ client-area
   .primary-btn.mr-3 {
     margin-right: 0 !important;
   }
+
   .secondary-btn {
     min-width: 190px;
   }
@@ -1544,23 +1552,28 @@ client-area
   font-size: 26px;
   margin-top: 30px;
 }
+
 .Toastify__toast-theme--light {
   background-color: var(--background-color);
   color: var(--text-primary-color-2);
 }
+
 .table td,
 .table th {
   padding: 0;
 }
+
 .tradeBookContainer {
   border: 1px solid rgb(126 126 126 / 20%);
 }
+
 .button-section-future {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 10px;
 }
+
 .button-section-future .theme-btn-future {
   width: 100%;
   border-radius: 0;
@@ -1570,6 +1583,7 @@ client-area
   font-weight: 600;
   text-transform: capitalize;
 }
+
 .button-section-future .theme-btn-red-future {
   width: 100%;
   border-radius: 0;
@@ -1579,11 +1593,13 @@ client-area
   font-weight: 600;
   text-transform: capitalize;
 }
+
 .future-balance-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .modal-button-future {
   background-color: var(--background-color-hover);
   width: 100%;
@@ -1593,6 +1609,7 @@ client-area
   padding: 10px;
   margin: 5px;
 }
+
 .future-modal__content {
   border-radius: 4px;
   position: relative;
@@ -1601,6 +1618,7 @@ client-area
   background: var(--background-color);
   padding: 3rem !important;
 }
+
 .leverage-section {
   display: flex;
   align-items: center;
@@ -1609,11 +1627,13 @@ client-area
   background-color: var(--background-color-trade);
   margin-top: 10px;
 }
+
 .position-container {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
+
 .position-container div input {
   margin-left: 10px;
   height: 50px;
@@ -1621,6 +1641,7 @@ client-area
   background-color: var(--main-background-color);
   border: none !important;
 }
+
 .position-content {
   display: flex;
   align-items: center;
@@ -1629,24 +1650,30 @@ client-area
   padding-top: 10px;
   font-size: 15px;
 }
+
 .position-input {
   display: flex;
   align-items: center;
   justify-content: space-around;
   background-color: var(--main-background-color);
 }
+
 .position-button-area {
   display: flex;
   align-items: center;
   margin-top: 10px;
 }
+
 .button-future-close {
   color: rgb(var(--primary-color)) !important;
   cursor: pointer;
 }
+
 .delete-bank-btn {
-  background-color: #ff0000; /* Replace with your desired red color code */
-  color: #ffffff; /* Set text color to white or any other contrasting color */
+  background-color: #ff0000;
+  /* Replace with your desired red color code */
+  color: #ffffff;
+  /* Set text color to white or any other contrasting color */
   /* Add any other necessary styles like padding, border-radius, etc. */
 }
 
@@ -1656,6 +1683,7 @@ client-area
   height: 24px;
   /* Add any other necessary styles for the logo */
 }
+
 .block-container {
   position: relative;
   width: 120px;
@@ -1731,11 +1759,11 @@ client-area
   transform: translate(-50%, -50%);
 }
 
-.block-container:hover > .btn-back {
+.block-container:hover>.btn-back {
   transform: translateZ(20px) rotateZ(15deg) rotateX(-30deg) rotateY(-30deg);
 }
 
-.block-container:hover > .btn-front {
+.block-container:hover>.btn-front {
   transform: translateZ(80px) translateY(-5px) rotateX(15deg) rotateY(15deg);
 }
 
@@ -1744,6 +1772,7 @@ client-area
     flex-direction: column;
   }
 }
+
 .trade-anywhere-container {
   background: var(--glass-color-bg-1) !important;
   padding: 54px 28px;
@@ -1751,6 +1780,7 @@ client-area
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
+
 .market-trend-area-container {
   /* background: var(--glass-color-bg-1) !important; */
   padding: 54px 148px;
@@ -1758,6 +1788,7 @@ client-area
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
+
 .hero-section {
   align-items: flex-start;
   background-image: var(--background-color);
@@ -1775,6 +1806,7 @@ client-area
   max-width: 1200px;
   width: 100%;
 }
+
 .placeTopLeft {
   width: 100%;
   box-sizing: border-box;
@@ -1790,6 +1822,7 @@ client-area
   left: 0;
   z-index: -1;
 }
+
 @media (min-width: 540px) {
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1822,6 +1855,7 @@ client-area
     margin: auto;
     display: block;
   }
+
   .card-grid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -1837,6 +1871,7 @@ client-area
   display: block;
   width: 100%;
 }
+
 .glass-card::before {
   padding-bottom: 150%;
 }
@@ -1860,7 +1895,7 @@ client-area
   transform: scale(1.05) translateZ(0);
 }
 
-.card-grid:hover > .card:not(:hover) .card__background {
+.card-grid:hover>.card:not(:hover) .card__background {
   filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
 }
 
@@ -1885,6 +1920,7 @@ client-area
   line-height: 1.4;
   word-spacing: 100vw;
 }
+
 /* .badge-danger {
   background-color: #ff79863d;
 } */

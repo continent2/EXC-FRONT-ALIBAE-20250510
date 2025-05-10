@@ -283,7 +283,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
         >
           <li
             role="presentation"
-            className="nav-item"
+            className="nav-item w-100"
             onClick={() => {
               // initialSetUp();
               handletrade_type(FUTURE_TRADE_TYPE_OPEN);
@@ -295,12 +295,13 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
               role="tab"
               aria-controls="pills-transfer-1"
               aria-selected="true"
-              className={`nav-link ${trade_type === 1 ? "active" : ""}`}
+              className={`nav-link ${trade_type === 1 ? "active" : ""} w-100 text-center`}
             >
               {t("Open")}
             </a>
           </li>
-          <li
+          {/* Close button is completely removed */}
+          {/* <li
             role="presentation"
             className="nav-item"
             onClick={() => {
@@ -318,8 +319,9 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
             >
               {t("Close")}
             </a>
-          </li>
+          </li> */}
         </ul>
+
       </div>
       <div className="d-flex justify-content-around">
         <Isolated

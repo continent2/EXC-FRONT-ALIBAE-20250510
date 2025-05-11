@@ -495,7 +495,7 @@ export const CloseSellOrderAction =
     }
   };
 export const closeLongShortAllOrderAction =
-  (CloseAll: any, coin_pair_id: number, message: string) => async (dispatch: any) => {
+  (CloseAll: any, coin_pair_id: number, message?: string) => async (dispatch: any) => {
     const arrayPrepare: any = [];
     CloseAll?.map((item: any) => {
       if (item.order_type === MARKET_ORDER) {

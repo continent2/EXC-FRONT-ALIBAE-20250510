@@ -317,7 +317,7 @@ const DemoTradeNavbar = ({
                             }}
                           >
                             {
-                              LanguageList.find(
+                              settings?.LanguageList?.find(
                                 (item: any) => item.key === router.locale
                               ).name
                             }
@@ -345,7 +345,7 @@ const DemoTradeNavbar = ({
                           <AiOutlineClose size={20} />
                         </span>
                       </li>
-                      {LanguageList.map((item: any, index: any) => (
+                      {settings?.LanguageList?.map((item: any, index: any) => (
                         <li
                           className={
                             item.key === router.locale

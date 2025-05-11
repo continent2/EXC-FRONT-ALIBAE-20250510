@@ -271,7 +271,7 @@ const NotificationDropdown = ({
                       </span>
                     </a>
                     <ul className="dropdown-menu-main display-grid grid-temp-col-2 w-370 lang-list-position">
-                      {LanguageList.map((item: any, index: any) => (
+                      {LanguageList?.map((item: any, index: any) => (
                         <li key={index}>
                           <Link href={router.asPath} locale={item.key}>
                             <a className="py-1 menu-hover">{item.name}</a>

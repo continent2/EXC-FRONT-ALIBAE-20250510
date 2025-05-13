@@ -10,6 +10,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { buyLimitAppAction } from "state/actions/exchange";
+import Spinner from "components/Spinner";
 
 const Limit = ({
   dashboard,
@@ -26,6 +27,8 @@ const Limit = ({
   const [selectedMarketValue, setSelectedMarketValue] = useState(0);
   const [tpSlchecked, setChecked] = useState(false);
   const dispatch = useDispatch();
+  const [isBuying, setIsBuying] = useState(false);
+  const [isSelling, setIsSelling] = useState(false);
 
   const setSizeBasedOnPercentage = (percentage: any) => {
     const { maker_fees, taker_fees } = dashboard.fees_settings;
@@ -309,26 +312,32 @@ const Limit = ({
                         //   amount: 0,
                         //   total: 0,
                         // });
+                        setIsBuying(true);
                         BuyOrder(
                           OpenCloseLimitCoinData,
                           setOpenCloseLimitCoinData
                         );
+                        setIsBuying(false);
                       }}
                     >
-                      <span v-else="">{t("Open long")}</span>
+                      <span v-else="">{isBuying ? "Loading" : t("Open")}</span>
                     </button>
                     <button
                       type="submit"
                       className="btn theme-btn-red-future"
                       onClick={(e) => {
                         e.preventDefault();
+
+                        setIsSelling(true);
                         SellOrder(
                           OpenCloseLimitCoinData,
                           setOpenCloseLimitCoinData
                         );
+
+                        setIsSelling(false);
                       }}
                     >
-                      <span v-else="">{t("open short")}</span>
+                      {isSelling ? <Spinner /> : t("Open short")}
                     </button>
                   </div>
                 )}

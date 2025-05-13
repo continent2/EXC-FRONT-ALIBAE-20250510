@@ -16,7 +16,7 @@ const Position = ({ listData }: any) => {
     listData.map((list: any) => {
       arr.push({
         order_id: list?.id,
-        order_type: 1,
+        order_type: 2,
         side: list?.side,
         price: dashboard?.order_data?.total?.trade_wallet?.last_price,
       });

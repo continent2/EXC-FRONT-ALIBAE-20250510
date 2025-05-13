@@ -362,6 +362,7 @@ export const preplaceOrderDataAction =
       formData.append("stop_loss", stop_loss === 0 ? "" : String(stop_loss));
     formData.append("leverage_amount", String(leverage_amount));
     formData.append("coin_pair_id", String(coin_pair_id));
+    // console.log('res',MARKET_ORDER,order_type)
     const response = await preplaceOrderData(formData);
     if (response.success) {
       setPrePlaceData(response.data);
@@ -499,7 +500,8 @@ export const closeLongShortAllOrderAction =
     const arrayPrepare: any = [];
     CloseAll?.map((item: any) => {
       if (item.order_type === MARKET_ORDER) {
-        delete item.price;
+        //  Number(item.price);
+        delete item.price
       }
       arrayPrepare.push(item);
     });
@@ -509,6 +511,7 @@ export const closeLongShortAllOrderAction =
       data: arrayPrepare,
     };
     const response = await closeLongShortAllOrder(preparedData);
+    console.log('res',response)
     if (response.success) {
       toast.success(message || response.message);
     } else {

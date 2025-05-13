@@ -76,11 +76,15 @@ const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
       dashboard?.order_data?.trade_coin_id &&
       isLoggedIn
     ) {
+      //  let interval = setInterval(()=>{
+
       getLongShortPositionOrderListAction(
         setListData,
         dashboard?.order_data?.base_coin_id,
         dashboard?.order_data?.trade_coin_id
       );
+      // },10000)
+
       getShortLongOrderHistoryAction(
         setorderHistory,
         dashboard?.order_data?.base_coin_id,
@@ -105,6 +109,9 @@ const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
         dashboard?.order_data?.base_coin_id,
         dashboard?.order_data?.trade_coin_id
       );
+      // return () => {
+      //   clearInterval(interval);
+      // };
     }
   }, [
     dashboard?.order_data?.trade_coin_id,
@@ -112,6 +119,46 @@ const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
     dashboard?.order_data?.coin_pair_id,
     isLoggedIn,
   ]);
+  const refreshOrderHistory = async () => {
+    if (
+      dashboard?.order_data?.base_coin_id &&
+      dashboard?.order_data?.trade_coin_id &&
+      isLoggedIn
+    ) {
+      await getLongShortPositionOrderListAction(
+        setListData,
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id
+      );
+      await getShortLongOrderHistoryAction(
+        setorderHistory,
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id
+      );
+      await openORderFutureAction(
+        setOpenOrder,
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id
+      );
+      await getTransactionHistoryAction(
+        settransactionHistory,
+        dashboard?.order_data?.coin_pair_id
+      );
+      await getTradeHistoryAction(
+        settradeHistory,
+        dashboard?.order_data?.base_coin_id,
+        dashboard?.order_data?.trade_coin_id
+      );
+    }
+  };
+
+  // Expose the refresh function globally (or use context/state management)
+  useEffect(() => {
+    window.updateOrderHistory = refreshOrderHistory;
+    return () => {
+      delete window.updateOrderHistory;
+    };
+  }, [dashboard?.order_data, isLoggedIn]);
   return (
     <div>
       <div className="orders-area mb-0">

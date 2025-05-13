@@ -177,13 +177,15 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
     const singleCloseItem = [
       {
         order_id: list?.id,
-        order_type: Close?.order_type || MARKET_ORDER,
+        // order_type: Close?.order_type || MARKET_ORDER,
+        order_type: MARKET_ORDER,
         side: list?.side,
         price:
-          Close?.price ||
-          dashboard?.order_data?.total?.trade_wallet?.last_price,
+          Number(Close?.price) ||
+          Number(dashboard?.order_data?.total?.trade_wallet?.last_price),
       },
     ];
+    console.log(list, Close, singleCloseItem, dashboard);
 
     dispatch(
       closeLongShortAllOrderAction(
@@ -193,6 +195,10 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll }: any) => {
         "Order closed successfully!"
       )
     );
+
+    if (typeof window?.updateOrderHistory === "function") {
+      await window?.updateOrderHistory();
+    }
     setIsClosingOrder(false);
   };
 

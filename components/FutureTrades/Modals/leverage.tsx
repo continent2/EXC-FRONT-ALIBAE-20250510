@@ -5,45 +5,45 @@ import { toast } from "react-toastify";
 
 const Leverage = ({ leverage, setLeverage, dashboard }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [leverages, setLeverages] = useState<any>([]);
+  const [leverages, setLeverages] = useState<any>([1, 2, 5, 10, 25]);
   const { t } = useTranslation("common");
   // dashboard?.order_data?.max_leverage;
-  const generateLeverage = () => {
-    const leverageArray = [];
-    const limit = dashboard?.order_data?.max_leverage;
-    if (dashboard?.order_data?.max_leverage == 0) {
-      setLeverage(0);
-      return;
-    }
-    if (typeof limit !== "undefined") {
-      if (limit >= 10) {
-        leverageArray.push(1, 5, 10);
-
-        let currentLeverage = 20;
-        while (currentLeverage <= limit) {
-          leverageArray.push(currentLeverage);
-          currentLeverage += 10;
-        }
-      } else if (limit < 5) {
-        leverageArray.push(1);
-      } else if (limit <= 5) {
-        leverageArray.push(1, 5);
-      }
-    } else {
-      // Handle the case when limit is undefined or not accessible
-      leverageArray.push(1);
-    }
-
-    setLeverages(leverageArray);
-    if (leverageArray.length) {
-      setLeverage(leverageArray[0]);
-    }
-  };
+  // const generateLeverage = () => {
+  //   const leverageArray = [];
+  //   const limit = dashboard?.order_data?.max_leverage;
+  //   if (dashboard?.order_data?.max_leverage == 0) {
+  //     setLeverage(0);
+  //     return;
+  //   }
+  //   if (typeof limit !== "undefined") {
+  //     if (limit >= 10) {
+  //       leverageArray.push(1, 5, 10);
+  //
+  //       let currentLeverage = 20;
+  //       while (currentLeverage <= limit) {
+  //         leverageArray.push(currentLeverage);
+  //         currentLeverage += 10;
+  //       }
+  //     } else if (limit < 5) {
+  //       leverageArray.push(1);
+  //     } else if (limit <= 5) {
+  //       leverageArray.push(1, 5);
+  //     }
+  //   } else {
+  //     // Handle the case when limit is undefined or not accessible
+  //     leverageArray.push(1);
+  //   }
+  //
+  //   setLeverages(leverageArray);
+  //   if (leverageArray.length) {
+  //     setLeverage(leverageArray[0]);
+  //   }
+  // };
   const toggle = () => {
-    if (leverage <= 0) {
-      toast.error(`No Leverage is available for this Coin Pair.`);
-      return;
-    }
+    // if (leverage <= 0) {
+    //   toast.error(`No Leverage is available for this Coin Pair.`);
+    //   return;
+    // }
     setIsModalOpen(!isModalOpen);
   };
 
@@ -53,9 +53,9 @@ const Leverage = ({ leverage, setLeverage, dashboard }: any) => {
   const modifyLeverage = (value: number) => {
     setLeverage(value);
   };
-  useEffect(() => {
-    generateLeverage();
-  }, [dashboard?.order_data?.max_leverage]);
+  // useEffect(() => {
+  //   generateLeverage();
+  // }, [dashboard?.order_data?.max_leverage]);
 
   return (
     <>
@@ -76,7 +76,7 @@ const Leverage = ({ leverage, setLeverage, dashboard }: any) => {
             <h3>Leverage</h3>
             <div className="leverage-section">{leverage}x</div>
             <div className="mt-3 percent-container mb-5 d-flex flex-wrap">
-              {leverages?.map((leverage: number, index: number) => (
+              {[1, 2, 5, 10, 25]?.map((leverage: number, index: number) => (
                 <span
                   key={index}
                   className="percent-btn col-3 mb-2"

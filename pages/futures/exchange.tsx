@@ -2,7 +2,7 @@ import SelectCurrency from "components/FutureTrades/SelectCurrencies";
 import TopBar from "components/FutureTrades/Topbar";
 import TradeBox from "components/FutureTrades/TradeBox";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   initialDashboardCallAction,
@@ -27,18 +27,24 @@ const Exchange = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const pair = localStorage.getItem("current_pair");
-    if (pair) {
-      dispatch(setCurrentPair(pair));
+    const intervalId = setInterval(() => {
+      const pair = localStorage.getItem("current_pair");
+      const effectivePair = pair || currentPair;
+
+      dispatch(setCurrentPair(effectivePair));
       dispatch(
-        initialDashboardCallAction(pair, dashboard, setisLoading, router)
+        initialDashboardCallAction(
+          effectivePair,
+          dashboard,
+          setisLoading,
+          router
+        )
       );
-    } else {
-      dispatch(
-        initialDashboardCallAction(currentPair, dashboard, setisLoading, router)
-      );
-    }
-  }, [isLoggedIn, currentPair]);
+    }, 10000);
+
+    return () => clearInterval(intervalId); // Clean up old interval
+  }, [isLoggedIn]); // Or even better: use [] if you don't need to refetch on change
+
   useEffect(() => {
     listenMessages(dispatch, user);
   }, [currentPair]);

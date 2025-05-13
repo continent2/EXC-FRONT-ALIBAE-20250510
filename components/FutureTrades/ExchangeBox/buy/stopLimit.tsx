@@ -10,6 +10,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { buyLimitAppAction } from "state/actions/exchange";
+import Spinner from "components/Spinner";
 
 const StopLimit = ({
   dashboard,
@@ -24,6 +25,8 @@ const StopLimit = ({
 }: any) => {
   const { t } = useTranslation("common");
   const [tpSlchecked, setChecked] = useState(false);
+  const [isBuying, setIsBuying] = useState(false);
+  const [isSelling, setIsSelling] = useState(false);
 
   return (
     <div id="BuyTabContent" className="tab-content p-0">
@@ -264,26 +267,32 @@ const StopLimit = ({
                       onClick={(e) => {
                         e.preventDefault();
 
+                        setIsBuying(true);
                         BuyOrder(
                           OpenCloseStopLimitCoinData,
                           setOpenCloseStopLimitCoinData
                         );
+                        setIsBuying(false);
                       }}
                     >
-                      <span v-else="">{t("Open long")}</span>
+                      <span v-else="">
+                        {isBuying ? <Spinner /> : t("Open long")}
+                      </span>
                     </button>
                     <button
                       type="submit"
                       className="btn theme-btn-red-future"
                       onClick={(e) => {
                         e.preventDefault();
+                        setIsSelling(true);
                         SellOrder(
                           OpenCloseStopLimitCoinData,
                           setOpenCloseStopLimitCoinData
                         );
+                        setIsSelling(false);
                       }}
                     >
-                      <span v-else="">{t("open short")}</span>
+                      {isSelling ? <Spinner /> : t("Open short")}
                     </button>
                   </div>
                 )}

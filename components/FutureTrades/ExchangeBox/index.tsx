@@ -39,6 +39,8 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const [leverage, setLeverage] = useState(0);
   const [marginMode, setmarginMode] = useState(disableCross ? ISOLATED : CROSS);
+  const [isBuying, setIsBuying] = useState(false);
+  const [isSelling, setIsSelling] = useState(false);
 
   const { dashboard, currentPair } = useSelector(
     (state: RootState) => state.futureExchange
@@ -99,7 +101,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
           : dashboard?.order_data?.buy_price,
     });
     setOpenCloseMarketCoinData({
-      ...OpenCloseLimitCoinData,
+      ...OpenCloseMarketCoinData,
       price:
         trade_type === FUTURE_TRADE_TYPE_OPEN
           ? dashboard?.order_data?.sell_price
@@ -107,7 +109,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
     });
   }, [dashboard?.order_data?.sell_price, trade_type]);
 
-  const [orderType, setorderType] = useState<number>(LIMIT_ORDER);
+  const [orderType, setorderType] = useState<number>(MARKET_ORDER);
   const handletrade_type = (tab: number) => {
     setTrade_type(tab);
   };
@@ -138,6 +140,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
     }
   };
   const BuyOrder = async (data: any, setData: any) => {
+    setIsBuying(true);
     await dispatch(
       placeBuyOrderAction(
         1,
@@ -165,8 +168,13 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
       amount_type: AMOUNT_TYPE_BASE,
       margin_mode: MARGIN_MODE_ISOLATED,
     });
+    if (typeof window?.updateOrderHistory === "function") {
+      window?.updateOrderHistory();
+    }
+    setIsBuying(false);
   };
   const SellOrder = async (data: any, setData: any) => {
+    setIsSelling(true);
     await dispatch(
       placeSellOrderDataAction(
         2,
@@ -194,6 +202,10 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
       amount_type: AMOUNT_TYPE_BASE,
       margin_mode: MARGIN_MODE_ISOLATED,
     });
+    if (typeof window?.updateOrderHistory === "function") {
+      window?.updateOrderHistory();
+    }
+    setIsSelling(false);
   };
   const CloseBuyOrder = async (data: any, setData: any) => {
     await dispatch(
@@ -249,6 +261,8 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
       margin_mode: MARGIN_MODE_ISOLATED,
     });
   };
+
+  // comment out the pre order api calling on input typing
   useEffect(() => {
     if (orderType === 1) {
       checkPreOrder(OpenCloseLimitCoinData);
@@ -269,9 +283,6 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
     leverage,
     marginMode,
   ]);
-  useEffect(() => {
-    setorderType(1);
-  }, [trade_type]);
 
   return (
     <div className="exchange-box order-box">
@@ -295,9 +306,12 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
               role="tab"
               aria-controls="pills-transfer-1"
               aria-selected="true"
-              className={`nav-link ${trade_type === 1 ? "active" : ""} w-100 text-center`}
+              className={`nav-link ${
+                trade_type === 1 ? "active" : ""
+              } w-100 text-center`}
             >
               {t("Open")}
+              {/* {t("Open a Position")} */}
             </a>
           </li>
           {/* Close button is completely removed */}
@@ -321,7 +335,6 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
             </a>
           </li> */}
         </ul>
-
       </div>
       <div className="d-flex justify-content-around">
         <Isolated
@@ -348,7 +361,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
             role="tablist"
             className="nav nav-tabs inner-tabs-menu gap-10"
           >
-            <li role="presentation" className="nav-item mr-0">
+            {/* <li role="presentation" className="nav-item mr-0">
               <a
                 id="Limit-tab"
                 data-toggle="tab"
@@ -362,15 +375,15 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
               >
                 {t("Limit")}
               </a>
-            </li>
+            </li> */}
             <li role="presentation" className="nav-item mr-0">
               <a
                 id="Market-tab"
                 data-toggle="tab"
                 role="tab"
                 aria-controls="Market"
-                aria-selected="false"
-                className="nav-link"
+                aria-selected="true"
+                className="nav-link active"
                 onClick={() => {
                   setorderType(MARKET_ORDER);
                 }}
@@ -378,7 +391,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
                 {t("Market")}
               </a>
             </li>
-            <li role="presentation" className="nav-item mr-0">
+            {/* <li role="presentation" className="nav-item mr-0">
               <a
                 id="Market-tab"
                 data-toggle="tab"
@@ -392,8 +405,8 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
               >
                 {t("Stop Limit")}
               </a>
-            </li>
-            <li role="presentation" className="nav-item mr-0">
+            </li> */}
+            {/* <li role="presentation" className="nav-item mr-0">
               <a
                 id="Market-tab"
                 data-toggle="tab"
@@ -407,22 +420,22 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
               >
                 {t("Stop Market")}
               </a>
-            </li>
+            </li> */}
           </ul>
-          {orderType === 1 && (
-            <Limit
-              dashboard={dashboard}
-              OpenCloseLimitCoinData={OpenCloseLimitCoinData}
-              setOpenCloseLimitCoinData={setOpenCloseLimitCoinData}
-              isLoggedIn={isLoggedIn}
-              currentPair={currentPair}
-              preplaceData={preplaceData}
-              selectedCoinType={selectedCoinType}
-              setSelectedCoinType={setSelectedCoinType}
-              BuyOrder={BuyOrder}
-              SellOrder={SellOrder}
-            />
-          )}
+          {/* {orderType === 1 && ( */}
+          {/*   <Limit */}
+          {/*     dashboard={dashboard} */}
+          {/*     OpenCloseLimitCoinData={OpenCloseLimitCoinData} */}
+          {/*     setOpenCloseLimitCoinData={setOpenCloseLimitCoinData} */}
+          {/*     isLoggedIn={isLoggedIn} */}
+          {/*     currentPair={currentPair} */}
+          {/*     preplaceData={preplaceData} */}
+          {/*     selectedCoinType={selectedCoinType} */}
+          {/*     setSelectedCoinType={setSelectedCoinType} */}
+          {/*     BuyOrder={BuyOrder} */}
+          {/*     SellOrder={SellOrder} */}
+          {/*   /> */}
+          {/* )} */}
           {orderType === 2 && (
             <Market
               dashboard={dashboard}
@@ -435,6 +448,8 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
               setSelectedCoinType={setSelectedCoinType}
               BuyOrder={BuyOrder}
               SellOrder={SellOrder}
+              isBuying={isBuying}
+              isSelling={isSelling}
             />
           )}
           {orderType === 3 && (
@@ -477,7 +492,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
             role="tablist"
             className="nav nav-tabs inner-tabs-menu gap-10"
           >
-            <li
+            {/* <li
               role="presentation"
               className="nav-item sellBox mr-0"
               onClick={() => {
@@ -494,7 +509,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
               >
                 {t("Limit")}
               </a>
-            </li>
+            </li> */}
             <li
               role="presentation"
               className="nav-item sellBox mr-0"
@@ -507,13 +522,13 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
                 data-toggle="tab"
                 role="tab"
                 aria-controls="MarketSell"
-                aria-selected="false"
-                className="nav-link"
+                aria-selected="true"
+                className="nav-link active"
               >
                 {t("Market")}
               </a>
             </li>
-            <li role="presentation" className="nav-item sellBox mr-0">
+            {/* <li role="presentation" className="nav-item sellBox mr-0">
               <a
                 id="Market-tab"
                 data-toggle="tab"
@@ -527,8 +542,8 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
               >
                 {t("Stop Limit")}
               </a>
-            </li>
-            <li role="presentation" className="nav-item sellBox mr-0">
+            </li> */}
+            {/* <li role="presentation" className="nav-item sellBox mr-0">
               <a
                 id="Market-tab"
                 data-toggle="tab"
@@ -542,7 +557,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
               >
                 {t("Stop Market")}
               </a>
-            </li>
+            </li> */}
           </ul>
           {orderType === 1 && (
             <SellLimit

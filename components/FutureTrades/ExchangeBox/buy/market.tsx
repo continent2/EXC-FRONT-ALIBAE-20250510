@@ -10,6 +10,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { buyLimitAppAction } from "state/actions/exchange";
+import Spinner from "components/Spinner";
 
 const Market = ({
   dashboard,
@@ -21,6 +22,8 @@ const Market = ({
   setSelectedCoinType,
   BuyOrder,
   SellOrder,
+  isBuying,
+  isSelling,
 }: any) => {
   const { t } = useTranslation("common");
   const [selectedMarketValue, setSelectedMarketValue] = useState(0);
@@ -156,7 +159,7 @@ const Market = ({
                     </span>
                   </div>
                 </div> */}
-                <div className="total-top">
+                {/* <div className="total-top">
                   <label>
                     <input
                       type="checkbox"
@@ -234,7 +237,7 @@ const Market = ({
                       </span>
                     </div>
                   </div>
-                )}
+                )} */}
 
                 {/* {isLoggedIn && (
                   <div className=" mt-3 percent-container ">
@@ -278,26 +281,34 @@ const Market = ({
                       className="btn theme-btn-future"
                       onClick={(e) => {
                         e.preventDefault();
+                        // setIsBuying(true);
                         BuyOrder(
                           OpenCloseMarketCoinData,
                           setOpenCloseMarketCoinData
                         );
+                        // setIsBuying(false);
                       }}
                     >
-                      <span v-else="">{t("Open long")}</span>
+                      {isBuying ? (
+                        <Spinner />
+                      ) : (
+                        <span v-else="">{t("Open long")}</span>
+                      )}
                     </button>
                     <button
                       type="submit"
                       className="btn theme-btn-red-future"
                       onClick={(e) => {
                         e.preventDefault();
+                        // setIsSelling(true);
                         SellOrder(
                           OpenCloseMarketCoinData,
                           setOpenCloseMarketCoinData
                         );
+                        // setIsSelling(false);
                       }}
                     >
-                      <span v-else="">{t("open short")}</span>
+                      {isSelling ? <Spinner /> : t("Open short")}
                     </button>
                   </div>
                 )}

@@ -215,7 +215,8 @@ export const closeLongShortAllOrder = async (payload: any) => {
 
 export const getLongShortPositionOrderList = async (base: any, trade: any) => {
   const { data } = await request.get(
-    `/get-long-short-position-order-list?base_coin_id=${base}&trade_coin_id=${trade}`
+    `/get-long-short-position-order-list?base_coin_id=${base}&trade_coin_id=${trade}`,
+    
   );
   return data;
 };

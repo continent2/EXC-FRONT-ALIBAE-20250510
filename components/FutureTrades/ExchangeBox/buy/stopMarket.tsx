@@ -10,6 +10,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { buyLimitAppAction } from "state/actions/exchange";
+import Spinner from "components/Spinner";
 
 const BuyStopMarketLimit = ({
   dashboard,
@@ -25,6 +26,8 @@ const BuyStopMarketLimit = ({
   const { t } = useTranslation("common");
   const [selectedMarketValue, setSelectedMarketValue] = useState(0);
   const [tpSlchecked, setChecked] = useState(false);
+  const [isBuying, setIsBuying] = useState(false);
+  const [isSelling, setIsSelling] = useState(false);
   const dispatch = useDispatch();
 
   const setSizeBasedOnPercentage = (percentage: any) => {
@@ -285,26 +288,32 @@ const BuyStopMarketLimit = ({
                       onClick={(e) => {
                         e.preventDefault();
 
+                        setIsBuying(true);
                         BuyOrder(
                           OpenCloseStopMarketCoinData,
                           setOpenCloseStopMarketCoinData
                         );
+                        setIsBuying(false);
                       }}
                     >
-                      <span v-else="">{t("Open long")}</span>
+                      <span v-else="">
+                        {isBuying ? <Spinner /> : t("Open long")}
+                      </span>
                     </button>
                     <button
                       type="submit"
                       className="btn theme-btn-red-future"
                       onClick={(e) => {
                         e.preventDefault();
+                        setIsSelling(true);
                         SellOrder(
                           OpenCloseStopMarketCoinData,
                           setOpenCloseStopMarketCoinData
                         );
+                        setIsSelling(false);
                       }}
                     >
-                      <span v-else="">{t("open short")}</span>
+                      {isSelling ? <Spinner /> : t("Open short")}
                     </button>
                   </div>
                 )}

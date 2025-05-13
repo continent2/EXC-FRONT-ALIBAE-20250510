@@ -110,7 +110,7 @@ const Market = ({
                     }}
                   />
                   <span className=" blns font-bold">
-                    <span
+                    {/* <span
                       className={
                         OpenCloseMarketCoinData.amount_type ===
                         AMOUNT_TYPE_TRADE
@@ -125,13 +125,13 @@ const Market = ({
                       }}
                     >
                       {dashboard?.order_data?.total?.trade_wallet?.coin_type}
-                    </span>
+                    </span> */}
                     <span
-                      className={
-                        OpenCloseMarketCoinData.amount_type === AMOUNT_TYPE_BASE
-                          ? "text-warning mr-2"
-                          : ""
-                      }
+                      // className={
+                      //   OpenCloseMarketCoinData.amount_type === AMOUNT_TYPE_BASE
+                      //     ? "text-warning mr-2"
+                      //     : ""
+                      // }
                       onClick={() => {
                         setOpenCloseMarketCoinData({
                           ...OpenCloseMarketCoinData,

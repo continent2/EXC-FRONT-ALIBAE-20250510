@@ -40,7 +40,7 @@ const Exchange = () => {
           router
         )
       );
-    }, 10000);
+    }, 5000);
 
     return () => clearInterval(intervalId); // Clean up old interval
   }, [isLoggedIn]); // Or even better: use [] if you don't need to refetch on change

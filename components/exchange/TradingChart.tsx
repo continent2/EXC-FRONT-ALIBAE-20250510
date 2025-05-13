@@ -301,7 +301,7 @@ export class TVChartContainer extends React.Component<MyProps> {
       if ((window as any).tvWidget) {
         (window as any).tvWidget.activeChart().resetData();
       }
-    }, 10000); // 30 seconds
+    }, 5000); // 30 seconds
   };
 
   clearDataRefresh = () => {

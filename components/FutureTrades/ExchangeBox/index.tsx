@@ -37,7 +37,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
   type trade_type = number;
   const { t } = useTranslation("common");
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
-  const [leverage, setLeverage] = useState(0);
+  const [leverage, setLeverage] = useState(1);
   const [marginMode, setmarginMode] = useState(disableCross ? ISOLATED : CROSS);
   const [isBuying, setIsBuying] = useState(false);
   const [isSelling, setIsSelling] = useState(false);
@@ -263,26 +263,26 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
   };
 
   // comment out the pre order api calling on input typing
-  useEffect(() => {
-    if (orderType === 1) {
-      checkPreOrder(OpenCloseLimitCoinData);
-    } else if (orderType === 2) {
-      checkPreOrder(OpenCloseMarketCoinData);
-    } else if (orderType === 3) {
-      checkPreOrder(OpenCloseStopLimitCoinData);
-    } else if (orderType === 4) {
-      checkPreOrder(OpenCloseStopMarketCoinData);
-    }
-  }, [
-    trade_type,
-    OpenCloseLimitCoinData,
-    OpenCloseMarketCoinData,
-    OpenCloseStopLimitCoinData,
-    OpenCloseStopMarketCoinData,
-    orderType,
-    leverage,
-    marginMode,
-  ]);
+  // useEffect(() => {
+  //   if (orderType === 1) {
+  //     checkPreOrder(OpenCloseLimitCoinData);
+  //   } else if (orderType === 2) {
+  //     checkPreOrder(OpenCloseMarketCoinData);
+  //   } else if (orderType === 3) {
+  //     checkPreOrder(OpenCloseStopLimitCoinData);
+  //   } else if (orderType === 4) {
+  //     checkPreOrder(OpenCloseStopMarketCoinData);
+  //   }
+  // }, [
+  //   trade_type,
+  //   OpenCloseLimitCoinData,
+  //   OpenCloseMarketCoinData,
+  //   OpenCloseStopLimitCoinData,
+  //   OpenCloseStopMarketCoinData,
+  //   orderType,
+  //   leverage,
+  //   marginMode,
+  // ]);
 
   return (
     <div className="exchange-box order-box">
@@ -310,8 +310,7 @@ const ExchangeBox = ({ disableCross, disableIsolated }: any) => {
                 trade_type === 1 ? "active" : ""
               } w-100 text-center`}
             >
-              {t("Open")}
-              {/* {t("Open a Position")} */}
+              {t("Open a Position")}
             </a>
           </li>
           {/* Close button is completely removed */}

@@ -361,6 +361,7 @@ export const preplaceOrderDataAction =
     stop_loss &&
       formData.append("stop_loss", stop_loss === 0 ? "" : String(stop_loss));
     formData.append("leverage_amount", String(leverage_amount));
+    formData.append("leverage_factor", String(leverage_amount));
     formData.append("coin_pair_id", String(coin_pair_id));
     // console.log('res',MARKET_ORDER,order_type)
     const response = await preplaceOrderData(formData);
@@ -407,6 +408,7 @@ export const placeBuyOrderAction =
     stop_loss &&
       formData.append("stop_loss", stop_loss === 0 ? "" : String(stop_loss));
     formData.append("leverage_amount", String(leverage_amount));
+    formData.append("leverage_factor", String(leverage_amount));
     formData.append("coin_pair_id", String(coin_pair_id));
     const response = await placeBuyOrderData(formData);
     if (response.success) {
@@ -451,6 +453,7 @@ export const placeSellOrderDataAction =
     stop_loss &&
       formData.append("stop_loss", stop_loss === 0 ? "" : String(stop_loss));
     formData.append("leverage_amount", String(leverage_amount));
+    formData.append("leverage_factor", String(leverage_amount));
     formData.append("coin_pair_id", String(coin_pair_id));
     const response = await placeSellOrderData(formData);
 

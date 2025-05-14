@@ -51,19 +51,19 @@ const Position = ({ listData, setListData }: any) => {
                   <th scope="col">{t(`Margin`)}</th>
                   <th scope="col">{t(`PNL(ROE)%`)}</th>
                   <th scope="col">{t(`Position`)}</th>
-                  <th
-                    className="button-future-close"
-                    onClick={() => {
-                      dispatch(
-                        closeLongShortAllOrderAction(
-                          CloseAll,
-                          dashboard?.order_data?.coin_pair_id
-                        )
-                      );
-                    }}
-                  >
-                    {t(`Close All Positions`)}
-                  </th>
+                  {/* <th */}
+                  {/*   className="button-future-close" */}
+                  {/*   onClick={() => { */}
+                  {/*     dispatch( */}
+                  {/*       closeLongShortAllOrderAction( */}
+                  {/*         CloseAll, */}
+                  {/*         dashboard?.order_data?.coin_pair_id */}
+                  {/*       ) */}
+                  {/*     ); */}
+                  {/*   }} */}
+                  {/* > */}
+                  {/*   {t(`Close All Positions`)} */}
+                  {/* </th> */}
                 </tr>
               </thead>
 

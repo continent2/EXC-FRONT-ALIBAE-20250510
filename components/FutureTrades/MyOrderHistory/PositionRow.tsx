@@ -158,15 +158,30 @@
 // export default PositionRow;
 import React, { useState } from "react";
 import PositionEdit from "../Modals/positionEdit";
-import { FUTURE_TRADE_TYPE_CLOSE, FUTURE_TRADE_TYPE_OPEN, FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE, FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE, LIMIT_ORDER, MARKET_ORDER, TRADE_TYPE_BUY, TRADE_TYPE_SELL } from "helpers/core-constants";
+import {
+  FUTURE_TRADE_TYPE_CLOSE,
+  FUTURE_TRADE_TYPE_OPEN,
+  FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE,
+  FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE,
+  LIMIT_ORDER,
+  MARKET_ORDER,
+  TRADE_TYPE_BUY,
+  TRADE_TYPE_SELL,
+} from "helpers/core-constants";
 import useTranslation from "next-translate/useTranslation";
 import { useDispatch } from "react-redux";
 import { closeLongShortAllOrderAction } from "state/actions/futureTrade";
 import { RootState } from "state/store";
 import { useSelector } from "react-redux";
 
-
-const PositionRow = ({ list, Close, setCloseAll, index, CloseAll, setListData = () => { } }: any) => {
+const PositionRow = ({
+  list,
+  Close,
+  setCloseAll,
+  index,
+  CloseAll,
+  setListData = () => {},
+}: any) => {
   const { t } = useTranslation("common");
   const [isClosingOrder, setIsClosingOrder] = useState(false);
   const dispatch = useDispatch();
@@ -191,7 +206,7 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll, setListData = 
       closeLongShortAllOrderAction(
         singleCloseItem,
         list?.profit_loss_calculation?.coin_pair_id ||
-        dashboard?.order_data?.coin_pair_id,
+          dashboard?.order_data?.coin_pair_id,
         "Order closed successfully!"
       )
     );
@@ -204,7 +219,6 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll, setListData = 
     if (setListData) {
       setListData((prev: any[] = []) => prev.filter((c) => c.id !== list.id));
     }
-
   };
 
   return (
@@ -248,39 +262,54 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll, setListData = 
           {parseFloat(list?.profit_loss_calculation?.roe).toFixed(4)}%
         </div>
       </td>
-        {list?.side === TRADE_TYPE_BUY &&
-          list?.trade_type === FUTURE_TRADE_TYPE_OPEN ? (
-          <td className="tradex-text-left tradex-min-w-[85px] text-success">{t(`Open Long`)}</td>
-        ) : list?.side === TRADE_TYPE_SELL &&
-          list?.trade_type === FUTURE_TRADE_TYPE_OPEN ? (
-          <td className="tradex-text-left tradex-min-w-[85px] text-success">{t(`Open short`)}</td>
-        ) : list?.side === TRADE_TYPE_BUY &&
-          list?.trade_type === FUTURE_TRADE_TYPE_CLOSE ? (
-          <td className="tradex-text-left tradex-min-w-[85px] text-danger">{t(`Close Long`)}</td>
-        ) : list?.side === TRADE_TYPE_SELL &&
-          list?.trade_type === FUTURE_TRADE_TYPE_CLOSE ? (
-          <td className="tradex-text-left tradex-min-w-[85px] text-success">{t(`Close Short`)}</td>
-        ) : list?.side === TRADE_TYPE_SELL &&
-          list?.trade_type ===
-          FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE ? (
-          <td className="tradex-text-left tradex-min-w-[85px] text-success">{t(`Close Short`)}</td>
-        ) : list?.side === TRADE_TYPE_SELL &&
-          list?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE ? (
-          <td className="tradex-text-left tradex-min-w-[85px] text-success">{t(`Close Short`)}</td>
-        ) : list?.side === TRADE_TYPE_BUY &&
-          list?.trade_type ===
-          FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE ? (
-          <td className="tradex-text-left tradex-min-w-[85px] text-danger">{t(`Close Long`)}</td>
-        ) : list?.side === TRADE_TYPE_BUY &&
-          list?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE ? (
-          <td className="tradex-text-left tradex-min-w-[85px] text-danger">{t(`Close Long`)}</td>
-        ) : (
-          <td className="">-</td>
-        )}
+      {list?.side === TRADE_TYPE_BUY &&
+      list?.trade_type === FUTURE_TRADE_TYPE_OPEN ? (
+        <td className="tradex-text-left tradex-min-w-[85px] text-success">
+          {t(`Long`)}
+        </td>
+      ) : list?.side === TRADE_TYPE_SELL &&
+        list?.trade_type === FUTURE_TRADE_TYPE_OPEN ? (
+        <td className="tradex-text-left tradex-min-w-[85px] text-success">
+          {t(`Short`)}
+        </td>
+      ) : list?.side === TRADE_TYPE_BUY &&
+        list?.trade_type === FUTURE_TRADE_TYPE_CLOSE ? (
+        <td className="tradex-text-left tradex-min-w-[85px] text-danger">
+          {t(`Long`)}
+        </td>
+      ) : list?.side === TRADE_TYPE_SELL &&
+        list?.trade_type === FUTURE_TRADE_TYPE_CLOSE ? (
+        <td className="tradex-text-left tradex-min-w-[85px] text-success">
+          {t(`Short`)}
+        </td>
+      ) : list?.side === TRADE_TYPE_SELL &&
+        list?.trade_type === FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE ? (
+        <td className="tradex-text-left tradex-min-w-[85px] text-success">
+          {t(`Short`)}
+        </td>
+      ) : list?.side === TRADE_TYPE_SELL &&
+        list?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE ? (
+        <td className="tradex-text-left tradex-min-w-[85px] text-success">
+          {t(`Short`)}
+        </td>
+      ) : list?.side === TRADE_TYPE_BUY &&
+        list?.trade_type === FUTURE_TRADE_TYPE_TAKE_PROFIT_CLOSE ? (
+        <td className="tradex-text-left tradex-min-w-[85px] text-danger">
+          {t(`Long`)}
+        </td>
+      ) : list?.side === TRADE_TYPE_BUY &&
+        list?.trade_type === FUTURE_TRADE_TYPE_STOP_LOSS_CLOSE ? (
+        <td className="tradex-text-left tradex-min-w-[85px] text-danger">
+          {t(`Long`)}
+        </td>
+      ) : (
+        <td className="">-</td>
+      )}
       <td className="position-container pr-1">
         <span
-          className={`ml-2 text-12 ${Close?.order_type === MARKET_ORDER && "text-warning"
-            }`}
+          className={`ml-2 text-12 ${
+            Close?.order_type === MARKET_ORDER && "text-warning"
+          }`}
           onClick={() => {
             setCloseAll({
               ...CloseAll,
@@ -294,8 +323,9 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll, setListData = 
           {t(`Market`)}
         </span>
         <span
-          className={`ml-2 text-12 ${Close?.order_type === LIMIT_ORDER && "text-warning"
-            }`}
+          className={`ml-2 text-12 ${
+            Close?.order_type === LIMIT_ORDER && "text-warning"
+          }`}
           onClick={() => {
             setCloseAll({
               ...CloseAll,
@@ -347,7 +377,7 @@ const PositionRow = ({ list, Close, setCloseAll, index, CloseAll, setListData = 
               ></div>
             </div>
           ) : (
-            "Close Position"
+            "Close"
           )}
         </div>{" "}
       </td>

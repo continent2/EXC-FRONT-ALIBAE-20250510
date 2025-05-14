@@ -251,7 +251,7 @@ const MyOrderHistory = ({ setdisableCross, setdisableIsolated }: any) => {
             </ul>
           </div>
         </div>
-        {selected === POSITON && <Position listData={listData} />}
+        {selected === POSITON && <Position listData={listData} setListData={setListData} />}
         {selected === OPEN_ORDER && <OpenOrder openOrder={openOrder} />}
         {selected === ORDER_HISTORY && (
           <OrderHistory orderHistory={orderHistory} />

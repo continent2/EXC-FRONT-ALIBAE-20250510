@@ -5,7 +5,7 @@ import { RootState } from "state/store";
 import { useDispatch, useSelector } from "react-redux";
 import useTranslation from "next-translate/useTranslation";
 
-const Position = ({ listData }: any) => {
+const Position = ({ listData, setListData }: any) => {
   const { t } = useTranslation("common");
   const [CloseAll, setCloseAll] = useState<any>([]);
   const { dashboard } = useSelector((state: RootState) => state.futureExchange);
@@ -50,6 +50,7 @@ const Position = ({ listData }: any) => {
                   <th scope="col">{t(`Margin Ratio`)}</th>
                   <th scope="col">{t(`Margin`)}</th>
                   <th scope="col">{t(`PNL(ROE)%`)}</th>
+                  <th scope="col">{t(`Position`)}</th>
                   <th
                     className="button-future-close"
                     onClick={() => {
@@ -74,6 +75,7 @@ const Position = ({ listData }: any) => {
                   setCloseAll={setCloseAll}
                   CloseAll={CloseAll}
                   index={index}
+                  setListData={setListData}
                 />
               ))}
             </table>
